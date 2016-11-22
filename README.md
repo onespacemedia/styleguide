@@ -11,3 +11,4 @@
 * [ ] Why SVG's are best used inline instead of as a `src` or `bgi`
 * [ ] Sections don't all have to be a unique class
 * [ ] Explain the `_Header` `_Body` style way of doing things and the benefits
+* [ ] Explain the standard classes `_Title`, `_Text`, etc.
