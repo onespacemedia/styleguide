@@ -12,3 +12,15 @@
 * [ ] Sections don't all have to be a unique class
 * [ ] Explain the `_Header` `_Body` style way of doing things and the benefits
 * [ ] Explain the standard classes `_Title`, `_Text`, etc.
+
+
+## Python
+* [ ] Django model attributes ordering and newslines
+* [ ] Single quotes
+* [ ] Consistency with older projects
+* [ ] String literals on a single line where appropriate
+
+## Templates
+* [ ] Indentation
+* [ ] Spaces inside curlies
+* [ ] With/set in jinja2 - spacing
