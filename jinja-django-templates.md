@@ -89,6 +89,12 @@ Blocks should never be padded with an empty line:
 {% set articles = get_news_articles() %}
 ```
 
+As well as being consistent with Python assignments, it means that constructs like this don't look weird:
+
+```
+{% set value1, value = get_some_tuple() %}
+```
+
 But as with Python, keyword arguments passed to a function should not:
 
 ```
