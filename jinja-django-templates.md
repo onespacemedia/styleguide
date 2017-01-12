@@ -81,7 +81,7 @@ Blocks should never be padded with an empty line:
 {% endif %}
 ```
 
-## Jinja2 specifics
+## Jinja2 `set` and `with`
 
 `{% set %}` and `{% with %}` assignments should have a space before and after the equals, just as one would in the generally-accepted Python style:
 
@@ -106,3 +106,39 @@ Function parameters should have a space after each comma, but never before:
 ```
 {% set articles = get_news_articles(featured=True, count=5) %}
 ```
+
+## Macros
+
+If your macro takes a lot of arguments, consider whether you can consolidate them into a single one.
+
+An example might be a macro called like this, to render a card for a news article:
+
+```
+{{ cards.card(
+  article.title,
+  article.summary,
+  article.image,
+  article.get_absolute_url(),
+  "some modifier"
+) }}
+```
+
+In this case, consider whether you could build an `as_card` method on your article model...
+
+```
+def as_card(self):
+  return {
+    "title": self.title,
+    "summary": self.summary,
+    "image": self.image,
+    "url": self.get_absolute_url(),
+  }
+```
+
+...and modify your `card` macro to take a single first parameter for the card's content:
+
+```
+{{ cards.card(article.as_card(), "modifier") }}
+```
+
+This has a bonus of moving any logic that may be required out of the template language and in to Python, where anything but the most simple logic will be much cleaner than it is in the template language.
