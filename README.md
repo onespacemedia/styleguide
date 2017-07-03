@@ -56,32 +56,32 @@ To quote PEP8,
 
 > A style guide is about consistency. Consistency with this style guide is important. Consistency within a project is more important. Consistency within one module or function is the most important.
 
-As the current set of rules evolved over time, many older projects will not be conformant with them. If you find yourself revisiting an older project. it is more important to stay consistent with the rest of that project than it is to enforce these rules.
+As the current set of rules evolved over time, many older projects will not be conformant with them. If you find yourself revisiting an older project, it is more important to stay consistent with the rest of that project than it is to enforce these rules.
 
-There is one exception to this: *Do not escalate CSS nesting specifity wars.* This harms maintainability further down the line. If you possibly can, create a new, non-conflicting class for any new components that you add.
+There is one exception to this: *Do not escalate CSS nesting specifity wars.* This harms maintainability in the future. If you possibly can, create a new, non-conflicting class for any new components that you add.
 
 # CSS guidelines
 
 Writing clean code is something that is good to look at, and although we use stylelist and now with the introduction of pre-commits we can rely on [Stylelint](https://stylelint.io/) to slap our wrists when we write something poorly or in the incorrect way, it is still good to understand as a team what the standard syntax should be when writing good sexy CSS, this includes:
 
-- Indent blocks with two spaces.
-- 80 character wide columns, to allow easy readability;
-- Multi-line CSS;
-- Meaningful use of whitespace;
-- Grouping properties.
+- 80 character wide columns, to aid readability
+- Multi-line CSS
+- Meaningful use of whitespace
+- Grouping properties
 
-## Terminology and order
+## General formatting rules
 
-The best way to write your CSS is as follows:
-
-- Related selectors on the same line, unrelated selectors on a new line;
+- Indent blocks with two spaces
 - A space before the opening curly brace ({)
-- Properties and values on the same line;
-- A space after the colon (:);
+- Properties and values on the same line
+- Always have a space after the colon (:)
 - Opening brace on the same line as our last selector ({);
 - Declarations on a new line including after the first opening curly brace ({);
 - Closing curly brace on a new line (});
 - Trailing semicolon at the end of each declaration (;).
+- Always end a CSS file with an empty line.
+- Properties should always be lowercase.
+- Shorten colour values - use #fff rather than #ffffff, for example.
 
 Example follows:
 
@@ -120,6 +120,13 @@ Example follow:
  .nsp-Component_ChildNode-files    { background-position:   0   -16px; }
  .nsp-Component_ChildNode-settings { background-position: -16px -16px; }
  ```
+
+## Selectors
+
+- Related selectors should be on the same line, unrelated selectors should be on a new line
+- Never use IDs as selectors
+- Do not use duplicate selectors.
+
 ## Stylelint and grouping properties
 
 [Stylelint](https://stylelint.io/) is utilised to try and catch errors when code is pushed. Take a second to understand the [configuration](https://github.com/onespacemedia/project-template/blob/develop/%7B%7Bcookiecutter.repo_name%7D%7D/package.json#L119) we use.
@@ -143,13 +150,6 @@ Properties are grouped together so they’re easily readable with a empty line b
     animation and transition properties;
   }
  ```
-
-Other things to consider:
-- Properties should always be lowercase.
-- Shorten colour values - use #fff rather than #ffffff, for example.
-- Do not use duplicate selectors.
-- Always end a CSS file with an empty line.
-- Don't use IDs as selectors.
 
 We recommend read the documentation above about linting as we also use it for Javascript as well. If you are familiar with linting then take a moment to run through the order above.
 
