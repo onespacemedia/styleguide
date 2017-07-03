@@ -33,9 +33,9 @@ The end of the documentation are all the front-end sections I can think of that 
 
 # Introduction
 
-As OSM moves forward and grows as a reputable design agency, it’s imperative to make sure as a team we are consistently producing work that makes us unique and stand out from the crowd. We have written this styleguide for your reference as a member of the dev team to outline what is expected and how to achieve the best possible standard so as we start to increase in project size and frequency.
+As OSM moves forward and grows as a reputable design agency, it’s imperative to make sure as a team we are consistently producing work that makes us unique and stand out from the crowd. We have written this styleguide for your reference as a member of the development team to outline what is expected and how to achieve the highest possible standard as project size and frequency increase.
 
-As the projects we start to work on become larger in scale and long-running it is very important that we work in a unified way and with a ever growing team with different specialities and abilities it is necessary to keep the process streamline in order to:
+As the projects we start to work on become larger in scale and longer-running, it is very important that we work in a unified way and with a ever growing team with different specialities and abilities. It is necessary to keep the process streamlined in order to:
 
 - Keep everything maintainable.
 - Keep code transparent, sane, and readable.
@@ -49,6 +49,16 @@ This is a [docsify](https://docsify.js.org/#/quickstart) document. To start:
 - Run `docsify init ./styleguide`, then `docsify serve styleguide`
 
 A web server will be spawned on port 3000. As you edit the README.md it will automatically refresh on the front-end.
+
+# Consistency
+
+To quote PEP8,
+
+> A style guide is about consistency. Consistency with this style guide is important. Consistency within a project is more important. Consistency within one module or function is the most important.
+
+As the current set of rules evolved over time, many older projects will not be conformant with them. If you find yourself revisiting an older project. it is more important to stay consistent with the rest of that project than it is to enforce these rules.
+
+There is one exception to this: *Do not escalate CSS nesting specifity wars.* This harms maintainability further down the line. If you possibly can, create a new, non-conflicting class for any new components that you add.
 
 # CSS guidelines
 
