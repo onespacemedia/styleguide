@@ -1,19 +1,3 @@
-This has been updated to a [docsify](https://docsify.js.org/#/quickstart) document, to start:
-- Run 
-```bash
-npm i docsify-cli -g
-```
-- Clone the repo into your Workspace folder
-- You don't need to CD that folder
-- Run 
-```bash
-docsify init ./styleguide
-```
-
-Update the README.md file with markdown language and it will automaticaly refresh on the front-end
-
-Old READ.md file below {
-
 # TODO:
 
 ## CSS
@@ -49,19 +33,28 @@ The end of the documentation are all the front-end sections I can think of that 
 
 # Introduction
 
-As OSM moves forward and grows as a reputable design agency, it’s imperative to make sure as a team we are consistently producing work that makes us unique and stand out from the crowd, this is why I have written a styleguide for your referral as a member of the dev team or a new member to outline what is expected and how to achieve the best possible standard so as we start to increase in project size and frequency.
+As OSM moves forward and grows as a reputable design agency, it’s imperative to make sure as a team we are consistently producing work that makes us unique and stand out from the crowd. We have written this styleguide for your reference as a member of the dev team to outline what is expected and how to achieve the best possible standard so as we start to increase in project size and frequency.
 
 As the projects we start to work on become larger in scale and long-running it is very important that we work in a unified way and with a ever growing team with different specialities and abilities it is necessary to keep the process streamline in order to:
 
-- Keep everything maintainable;
-- Keep code transparent, sane, and readable;
-- Keep everything scalable
+- Keep everything maintainable.
+- Keep code transparent, sane, and readable.
+- Keep everything scalable.
 
-# Syntax & formatting
+# Editing this style guide
+
+This is a [docsify](https://docsify.js.org/#/quickstart) document. To start:
+- Run `npm i docsify-cli -g`
+- Clone the `styleguide` repository into your Workspace folder
+- Run `docsify init ./styleguide`, then `docsify serve styleguide`
+
+A web server will be spawned on port 3000. As you edit the README.md it will automatically refresh on the front-end.
+
+# CSS guidelines
 
 Writing clean code is something that is good to look at, and although we use stylelist and now with the introduction of pre-commits we can rely on [Stylelint](https://stylelint.io/) to slap our wrists when we write something poorly or in the incorrect way, it is still good to understand as a team what the standard syntax should be when writing good sexy CSS, this includes:
 
-- Two space indent, (I am sure all your ide’s are set up to this but it’s good to specify);
+- Indent blocks with two spaces.
 - 80 character wide columns, to allow easy readability;
 - Multi-line CSS;
 - Meaningful use of whitespace;
@@ -69,12 +62,12 @@ Writing clean code is something that is good to look at, and although we use sty
 
 ## Terminology and order
 
-It’s good understand how to properly write CSS and know the terminology, the best way to write your CSS is as follows:
+The best way to write your CSS is as follows:
 
 - Related selectors on the same line, unrelated selectors on a new line;
 - A space before the opening curly brace ({)
 - Properties and values on the same line;
-- A space after our property, with a colon (:);
+- A space after the colon (:);
 - Opening brace on the same line as our last selector ({);
 - Declarations on a new line including after the first opening curly brace ({);
 - Closing curly brace on a new line (});
@@ -83,12 +76,12 @@ It’s good understand how to properly write CSS and know the terminology, the b
 Example follows:
 
 ```css
-  [selector] [related selector],
+  [selector] ,[related selector],
   [unrelated selector] {
     [property]: [value];
     [<--declaration-->]
   }
-  
+
   .nsp-Component_ChildNode, .nsp-Component_ChildNode-childnode,
   .nsp-ComponentUnrelated_ChildNode {
     display: block;
@@ -102,16 +95,16 @@ Exceptions:
 - Sharing enough similarities that they don’t need to be read as thoroughly as other rulesets - there is more benefit in being able to scan their selectors.
 
 Example follow:
- 
+
  ```css
  .nsp-Component_ChildNode {
    display: inline-block;
    width: 16px;
    height: 16px;
-   
+
    background-image: url(/img/svg.svg);
  }
- 
+
  .nsp-Component_ChildNode-home     { background-position:   0     0  ; }
  .nsp-Component_ChildNode-person   { background-position: -16px   0  ; }
  .nsp-Component_ChildNode-files    { background-position:   0   -16px; }
@@ -119,40 +112,42 @@ Example follow:
  ```
 ## Stylelint and grouping properties
 
-[Stylelint](https://stylelint.io/) is utilised to try and catch errors when code is push in order to make sure it is to a good quality, that doesn’t mean you should rely on it, take a second to understand the [configuration](https://github.com/onespacemedia/project-template/blob/develop/%7B%7Bcookiecutter.repo_name%7D%7D/package.json#L119) we use. Properties are grouped together so they’re easily readable with a empty line between, a quick breakdown is as follows (in order):
+[Stylelint](https://stylelint.io/) is utilised to try and catch errors when code is pushed. Take a second to understand the [configuration](https://github.com/onespacemedia/project-template/blob/develop/%7B%7Bcookiecutter.repo_name%7D%7D/package.json#L119) we use.
+
+Properties are grouped together so they’re easily readable with a empty line between, in this order:
 
  ```css
  .nsp-Component_ChildNode {
     content properties;
-  
+
     position properties;
-  
+
     flex properties;
-  
+
     display margin and height properties;
-  
+
     font and text properties;
-  
+
     background border and color properties;
-  
+
     animation and transition properties;
   }
  ```
 
 Other things to consider:
-- All color and hex values must be lowercase and shortened;
-- You must’nt use duplicate selectors;
-- Properties should always be lowercase;
-- .css files should always end with an empty blank space;
-- Id shouldn’t be used as a selector.
+- Properties should always be lowercase.
+- Shorten colour values - use #fff rather than #ffffff, for example.
+- Do not use duplicate selectors.
+- Always end a CSS file with an empty line.
+- Don't use IDs as selectors.
 
-A recommendation for new people joining the team would be to read the documentation above about linting as we also use it for javascript files as well, if you are familiar with linting then take a moment to run through the order above.
+We recommend read the documentation above about linting as we also use it for Javascript as well. If you are familiar with linting then take a moment to run through the order above.
 
-# Commenting
+## Commenting
 
-With the increase in size in projects it becomes more and more important to comment your css, trying to understand and remember your own code is difficult within itself let alone anyone inheriting the project.
+With the increasing size of Onespacemedia projects it is increasingly important to comment your CSS. Trying to understand your own code is difficult enough. Someone inheriting the project will find it more difficult than that.
 
-There should always be a heading comment at the top of a .css file that includes the component name and the nsp selector, example:
+There should always be a heading comment at the top of a .css file that includes the component name and the namespace selector:
 
 ```css
 /*
@@ -164,7 +159,7 @@ There should always be a heading comment at the top of a .css file that includes
 */
 ```
 
-Then comments after should be grouped and order in the same way the html is ordered keeping everything together in small sections in the file, example:
+Then comments after should be grouped and order in the same way the HTML is ordered, keeping everything together in small sections in the file:
 
 ```css
 /*
@@ -186,28 +181,28 @@ Then comments after should be grouped and order in the same way the html is orde
 */
 ```
 
-# Enduring CSS
+## Enduring CSS
 
 - Understanding the problem
 
-# Reusability
- 
+## Reusability
+
  - Naming
 
-# Specifitiy
+## Specifity
 
-# Definition Properties
+## Definition Properties
 
-# Vertical Rythm
+## Vertical Rythm
 
-# Browser testing
+## Browser testing
 
-# Responsive development
+## Responsive development
 
-# Models
+## Models
 
-# CMS / Admin
+## CMS / Admin
 
-# User considerations
+## User considerations
 
-# SEO
+## SEO
