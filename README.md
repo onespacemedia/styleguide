@@ -112,7 +112,7 @@ Example follow:
    width: 16px;
    height: 16px;
 
-   background-image: url(/img/svg.svg);
+   background-image: url(/img/photo.jpg);
  }
 
  .nsp-Component_ChildNode-home     { background-position:   0     0  ; }
