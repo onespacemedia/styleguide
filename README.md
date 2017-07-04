@@ -318,6 +318,8 @@ title = models.CharField(
 )
 ```
 
+All models must define a `__str__` method in Python 3 projects, or `__unicode__` for Python 2.
+
 ### About various field types
 
 Don't use a very large `max_length` for `CharField`. Generally, unless there are good technical reasons to do otherwise, don't supply a `max_length` of more than 300. If you need more characters than that, use a `TextField`.
