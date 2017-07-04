@@ -14,18 +14,10 @@
 * [ ] Explain the standard classes `_Title`, `_Text`, etc.
 
 
-## Python
-* [ ] Django model attributes ordering and newslines
-* [ ] Single quotes
-* [ ] Consistency with older projects
-* [ ] String literals on a single line where appropriate
-
 ## Templates
 * [ ] Indentation
 * [ ] Spaces inside curlies
 * [ ] With/set in jinja2 - spacing
-
-}
 
 The end of the documentation are all the front-end sections I can think of that need to be covered, as I am not backend hopefully we can work together to create something definitive that we can all reference. Thanks!
 
@@ -209,25 +201,41 @@ Then comments after should be grouped and order in the same way the HTML is orde
 
 ## Responsive development
 
-## Models
+# CMS / Admin
 
-## CMS / Admin
+# User considerations
 
-## User considerations
-
-## SEO
+# SEO
 
 # Python style guidelines
 
 If in doubt, [PEP 8](https://www.python.org/dev/peps/pep-0008/).
 
-## Quotes
+## String quotes
 
 Prefer 'single quotes' over "double quotes".
 
-If a Python file consistently uses double quotes, then stay consistent with the file by using double quotes for new code.
+If a Python file consistently uses double quotes, then stay consistent with that file by using double quotes for new code within it.
 
 If a file uses a mixture of single and double quotes, use single quotes for new code, but feel free to convert it to use single quotes consistently.
+
+For quoting text that contains an apostrophe, it's fine to use either double quotes or single quotes with backslash escapes inside. This is fine:
+
+```python
+have_bugs = models.BooleanField(
+    default=False,
+    help_text="Don't check this!"
+)
+```
+
+But this is too:
+
+```python
+explode = models.BooleanField(
+    default=False,
+    help_text='Don\'t check this either!'
+)
+```
 
 ## Line lengths
 
@@ -339,3 +347,23 @@ Order model attributes thusly:
 * Double-underscore-prefixed special methods, e.g. `__unicode__`/`__str__`
 * Overrides of standard model methods (e.g. `save()`)
 * All other model methods, in alphabetical order
+
+
+### Model, field, and app naming
+
+Always ensure that the `verbose_name_plural` for a model is grammatical. Django's default behaviour will pluralise 'Category' as 'Categorys'.
+
+Where appropriate, supply an appropriate `verbose_name` to ensure that capitalisation is correct for both model names and field names, including appropriate capitalisation for brand names. A model called `Faq` should have a `verbose_name` of 'FAQ'. A 'linkedin_url' field should have a `verbose_name` of 'LinkedIn URL', to avoid the default admin rendering of 'Linkedin url'.
+
+Similarly, where required, ensure that app names have an appropriate `AppConfig` to ensure that app names render grammatically in the admin.
+
+## Django views
+
+Always use [class-based views](https://docs.djangoproject.com/en/1.11/topics/class-based-views/). We have a nice [tutorial](http://www.onespacemedia.com/news/2014/feb/5/getting-started-generic-class-based-views-django/).
+
+View classes should have their attributes in this order:
+
+1. Static class attributes
+2. Double-underscore methods (`__init__` and friends)
+3. Methods inherited from Django generic views, in alphabetical order
+4. Custom methods, in alphabetical order
