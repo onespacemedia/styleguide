@@ -367,6 +367,63 @@ When inlining SVGs, be careful with SVGs exported by Adobe Illustrator. Apart fr
 5. Replace class names with ones conforming to our naming conventions (or for SVGs with a single colour, like most icons, remove class names altogether)
 6. Use CSS (within the standard frontend build system, not in the SVG itself) to style the SVGs, if necessary.
 
+# JavaScript guidelines
+
+We are conformant with the [Standard Style](https://standardjs.com/). In all semi-recent projects, this is enforced by the build system. To condense the Standard authors' summary:
+
+- Two space for indentation
+- Single quotes for strings, except to avoid escaping
+- No unused variables
+- No semicolons for statement termination
+- Put a space after keywords and function names
+- Use `===` instead of `==`
+- Always prefix browser globals with `window`, except `document` and `navigator`
+
+The one exception we've made to those rules is that unused variables are a warning during development, not an error - unused variables should not make their way into production code.
+
+Read the [complete set of rules](https://standardjs.com/rules.html) on the Standard site for more.
+
+## ES6 features
+
+These rules apply for scripts within our frontend build system, which are transpiled to universally-browser-friendly ES5. In the rare cases where inline JavaScript is used in a document, you should avoid ES6 features, as they are not universally implemented on all of the browsers we support.
+
+Always use `let` or `const`, never `var`. Always use `const` for locals which are not reassigned.
+
+Use ES6 fat-arrow functions for anonymous functions whenever possible, which is almost always.
+
+```javascript
+window.addEventListener('DOMContentLoaded', () => {
+  doDomContentLoadedStuff()
+})
+```
+
+Use object-literal shorthand where you can:
+
+
+```javascript
+// In cases where our variable (or constant) names are the same as the names
+// of our object keys, we can do this:
+const animals = {
+  cow,
+  dog
+}
+```
+
+Use ES6 string templates instead of ES5 concatenation:
+
+```javascript
+const animal = 'cat'
+const animalPlural = `${animal}s`
+```
+
+Use ES6 `for...of` loops, rather than ES5 `for`:
+
+```javascript
+for (const animal of animals) {
+  animal.makeNoise()
+}```
+
+
 # Python guidelines
 
 If in doubt, [PEP 8](https://www.python.org/dev/peps/pep-0008/).
