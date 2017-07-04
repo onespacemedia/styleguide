@@ -201,7 +201,7 @@ Where possible, you should usually prefer inlining an SVG in HTML rather than in
 
 With a few rare exceptions, SVGs should contain only `path` elements, and you should be able to target the visible parts of the path with `fill` alone (rather than strokes). This gives a single target for CSS, and a single CSS property for styling it. Ask a designer to convert the file for you if you don't know how to convert it yourself.
 
-When inlining SVGs, be careful with SVGs exported by Adobe Illustrator. Apart from being vastly bigger than they need to be, they almost invariably end up with SVGs with identical IDs, identical class names, and inline `<style>` blocks. This often causes a completely different SVG included in one place on a page to apply its styles to paths in an earlier part of the document.
+When inlining SVGs, be careful with SVGs exported by Adobe Illustrator. Apart from being vastly bigger than they need to be, they almost invariably end up with SVGs with identical IDs, identical class names, and inline `<style>` blocks. This often causes an SVG to apply its styles to paths in a different SVG earlier in the document.
 
 [SVGOMG](https://jakearchibald.github.io/svgomg/) is a useful tool for cleaning up SVG files. Alternatively, the manual cleanup guide is this:
 
