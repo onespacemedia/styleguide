@@ -197,12 +197,14 @@ Use the short form for attributes like `checked` on `<input>` and `selected` on 
 
 Where possible, you should usually prefer inlining an SVG in HTML rather than including it with `<img>` or applying it with a `background-image`. This permits targeting SVG paths in CSS for things like hover effects.
 
+With a few rare exceptions, SVGs should contain only `path` elements, and you should be able to target the visible parts of the path with `fill` alone (rather than strokes). This gives a single target for CSS, and a single CSS property for styling it. Ask a designer to convert the file for you if you don't know how to convert it yourself.
+
 When inlining SVGs, be careful with SVGs exported by Adobe Illustrator. Apart from being vastly bigger than they need to be, they almost invariably end up with SVGs with identical IDs, identical class names, and inline `<style>` blocks. This often causes a completely different SVG included in one place on a page to apply its styles to paths in an earlier part of the document. The general cleanup guide is this:
 
 1. Remove the `<?xml` declaration.
 2. Remove all attributes from the root `svg` element except `viewBox`.
 3. Remove the entire `<defs>` block if one is present.
-4. Remove any explicit `fill=`, `stroke=` attributes on paths.
+4. Remove any explicit `fill=` attributes on paths.
 5. Replace class names with ones conforming to our naming conventions (or for SVGs with a single colour, like most icons, remove class names altogether)
 6. Use CSS (within the standard frontend build system, not in the SVG itself) to style the SVGs, if necessary.
 
