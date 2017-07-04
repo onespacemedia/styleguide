@@ -158,6 +158,8 @@ Then comments after should be grouped and order in the same way the HTML is orde
 */
 ```
 
+If you use "magic" numbers anywhere in your
+
 # HTML
 
 Tag names, attributes, and attribute values should be in lower-case where possible.
@@ -195,11 +197,13 @@ Use the short form for attributes like `checked` on `<input>` and `selected` on 
 
 ## SVGs
 
-Where possible, you should usually prefer inlining an SVG in HTML rather than including it with `<img>` or applying it with a `background-image`. This permits targeting SVG paths in CSS for things like hover effects.
+Where possible, you should usually prefer inlining an SVG in HTML rather than including it with `<img>` or applying it with a `background-image`. This permits targeting SVG paths in CSS for things like hover effects an animations.
 
 With a few rare exceptions, SVGs should contain only `path` elements, and you should be able to target the visible parts of the path with `fill` alone (rather than strokes). This gives a single target for CSS, and a single CSS property for styling it. Ask a designer to convert the file for you if you don't know how to convert it yourself.
 
-When inlining SVGs, be careful with SVGs exported by Adobe Illustrator. Apart from being vastly bigger than they need to be, they almost invariably end up with SVGs with identical IDs, identical class names, and inline `<style>` blocks. This often causes a completely different SVG included in one place on a page to apply its styles to paths in an earlier part of the document. The general cleanup guide is this:
+When inlining SVGs, be careful with SVGs exported by Adobe Illustrator. Apart from being vastly bigger than they need to be, they almost invariably end up with SVGs with identical IDs, identical class names, and inline `<style>` blocks. This often causes a completely different SVG included in one place on a page to apply its styles to paths in an earlier part of the document.
+
+[SVGOMG](https://jakearchibald.github.io/svgomg/) is a useful tool for cleaning up SVG files. Alternatively, the manual cleanup guide is this:
 
 1. Remove the `<?xml` declaration.
 2. Remove all attributes from the root `svg` element except `viewBox`.
@@ -344,17 +348,16 @@ This avoids problems with recursive imports across apps.
 
 Order model attributes thusly:
 
-* Static class variables (e.g., the common `urlconf = 'projectname.apps.app_name.urls'` for CMS `ContentBase` derivatives)
-* Database fields
-* The `Meta` class
-* Double-underscore-prefixed special methods, e.g. `__unicode__`/`__str__`
-* Overrides of standard model methods (e.g. `save()`)
-* All other model methods, in alphabetical order
-
+1. Static class variables other than database fields (e.g., the common `urlconf = 'projectname.apps.app_name.urls'` for CMS `ContentBase` derivatives)
+2. Database fields
+3. The `Meta` class
+4. Double-underscore-prefixed special methods, e.g. `__unicode__`/`__str__`
+5. Overrides of standard model methods (e.g. `save()`), in alphabetical order
+6. All other model methods, in alphabetical order
 
 ### Model, field, and app naming
 
-Always ensure that the `verbose_name_plural` for a model is grammatical. Django's default behaviour will pluralise 'Category' as 'Categorys'.
+Always ensure that the `verbose_name_plural` for a model is grammatical. Django's default behaviour will pluralise 'Category' as 'Categorys', for example.
 
 Where appropriate, supply an appropriate `verbose_name` to ensure that capitalisation is correct for both model names and field names, including appropriate capitalisation for brand names. A model called `Faq` should have a `verbose_name` of 'FAQ'. A 'linkedin_url' field should have a `verbose_name` of 'LinkedIn URL', to avoid the default admin rendering of 'Linkedin url'.
 
