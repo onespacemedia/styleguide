@@ -1,28 +1,3 @@
-# TODO:
-
-## CSS
-* [ ] Margin vs Padding on sections
-* [ ] `& + &` vs all items having it and explicitly defining the `{first,last}-child`
-* [ ] `Why --Grid_Container` can't take the `percentage(x, x)` as well
-* [ ] How to do cards height (iOS issues with height: 100%)
-* [ ] How to do overflow on body with iOS
-
-## HTML
-* [ ] Why SVG's are best used inline instead of as a `src` or `bgi`
-* [ ] Sections don't all have to be a unique class
-* [ ] Explain the `_Header` `_Body` style way of doing things and the benefits
-* [ ] Explain the standard classes `_Title`, `_Text`, etc.
-
-
-## Templates
-* [ ] Indentation
-* [ ] Spaces inside curlies
-* [ ] With/set in jinja2 - spacing
-
-The end of the documentation are all the front-end sections I can think of that need to be covered, as I am not backend hopefully we can work together to create something definitive that we can all reference. Thanks!
-
------------------------------------
-
 # Introduction
 
 As OSM moves forward and grows as a reputable design agency, it’s imperative to make sure as a team we are consistently producing work that makes us unique and stand out from the crowd. We have written this styleguide for your reference as a member of the development team to outline what is expected and how to achieve the highest possible standard as project size and frequency increase.
@@ -182,30 +157,6 @@ Then comments after should be grouped and order in the same way the HTML is orde
 |--------------------------------------------------------------------------
 */
 ```
-
-## Enduring CSS
-
-- Understanding the problem
-
-## Reusability
-
- - Naming
-
-## Specifity
-
-## Definition Properties
-
-## Vertical Rythm
-
-## Browser testing
-
-## Responsive development
-
-# CMS / Admin
-
-# User considerations
-
-# SEO
 
 # Python style guidelines
 
@@ -367,3 +318,35 @@ View classes should have their attributes in this order:
 2. Double-underscore methods (`__init__` and friends)
 3. Methods inherited from Django generic views, in alphabetical order
 4. Custom methods, in alphabetical order
+
+# TODO:
+
+## CSS
+* [ ] Margin vs Padding on sections
+* [ ] `& + &` vs all items having it and explicitly defining the `{first,last}-child`
+* [ ] `Why --Grid_Container` can't take the `percentage(x, x)` as well
+* [ ] How to do cards height (iOS issues with height: 100%)
+* [ ] How to do overflow on body with iOS
+* [ ] Enduring CSS - Understanding the problem
+* [ ] Reusability - Naming
+* [ ] Specifity
+* [ ] Definition Properties
+* [ ] Vertical Rythm
+
+## HTML
+* [ ] Why SVG's are best used inline instead of as a `src` or `bgi`
+* [ ] Sections don't all have to be a unique class
+* [ ] Explain the `_Header` `_Body` style way of doing things and the benefits
+* [ ] Explain the standard classes `_Title`, `_Text`, etc.
+
+## Templates
+* [ ] Indentation
+* [ ] Spaces inside curlies
+* [ ] With/set in jinja2 - spacing
+
+## Etc
+* [ ] Browser testing
+* [ ] Responsive development
+* [ ] CMS / Admin
+* [ ] User considerations
+* [ ] SEO
