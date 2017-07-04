@@ -334,10 +334,10 @@ In this case, consider whether you could build an `as_card` method on your artic
 ```
 def as_card(self):
   return {
-    "title": self.title,
-    "summary": self.summary,
-    "image": self.image,
-    "url": self.get_absolute_url(),
+    'title': self.title,
+    'summary': self.summary,
+    'image': self.image,
+    'url': self.get_absolute_url(),
   }
 ```
 
