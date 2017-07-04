@@ -548,11 +548,6 @@ View classes should have their attributes in this order:
 * [ ] Explain the `_Header` `_Body` style way of doing things and the benefits
 * [ ] Explain the standard classes `_Title`, `_Text`, etc.
 
-## Templates
-* [ ] Indentation
-* [ ] Spaces inside curlies
-* [ ] With/set in jinja2 - spacing
-
 ## Etc
 * [ ] Browser testing
 * [ ] Responsive development
