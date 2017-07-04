@@ -158,7 +158,9 @@ Then comments after should be grouped and order in the same way the HTML is orde
 */
 ```
 
-If you use "magic" numbers anywhere in your
+If you use "magic" numbers in your CSS, add a comment above it explaining why you are using those numbers.
+
+Comment any strange or clever CSS. Sometimes cross-browser fixes will require unusual rules that would not make any sense to a first-time observer, who might see it as a target for refactoring.
 
 # HTML guidelines
 
@@ -331,7 +333,7 @@ An example might be a macro called like this, to render a card for a news articl
 
 In this case, consider whether you could build an `as_card` method on your article model...
 
-```
+```python
 def as_card(self):
   return {
     'title': self.title,
@@ -385,7 +387,7 @@ Read the [complete set of rules](https://standardjs.com/rules.html) on the Stand
 
 ## ES6 features
 
-These rules apply for scripts within our frontend build system, which are transpiled to universally-browser-friendly ES5. In the rare cases where inline JavaScript is used in a document, you should avoid ES6 features, as they are not universally implemented on all of the browsers we support.
+These rules apply for scripts within our frontend build system, which are transpiled to universally-browser-friendly ES5. In the rare cases where inline JavaScript is used in a document, you should avoid ES6 features, as they are not universally and consistently implemented in all the browsers we currently support.
 
 Always use `let` or `const`, never `var`. Always use `const` for locals which are not reassigned.
 
