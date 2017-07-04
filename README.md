@@ -160,9 +160,9 @@ Then comments after should be grouped and order in the same way the HTML is orde
 
 If you use "magic" numbers anywhere in your
 
-# HTML
+# HTML guidelines
 
-## General HTML rules
+## General formatting rules
 
 Tag names, attributes, and attribute values should be in lower-case where possible.
 
@@ -367,7 +367,7 @@ When inlining SVGs, be careful with SVGs exported by Adobe Illustrator. Apart fr
 5. Replace class names with ones conforming to our naming conventions (or for SVGs with a single colour, like most icons, remove class names altogether)
 6. Use CSS (within the standard frontend build system, not in the SVG itself) to style the SVGs, if necessary.
 
-# Python style guidelines
+# Python guidelines
 
 If in doubt, [PEP 8](https://www.python.org/dev/peps/pep-0008/).
 
