@@ -158,6 +158,54 @@ Then comments after should be grouped and order in the same way the HTML is orde
 */
 ```
 
+# HTML
+
+Tag names, attributes, and attribute values should be in lower-case where possible.
+
+Attribute values should be quoted in "double quotes"
+
+Where an element starts on a new line to a parent element, it should be indented by two spaces. Elements that are rendered as blocks (whether they are block-level elements in the specification or made to render that way in CSS) should usually start on a new line. Avoid doing this if it will cause an ungrammatical space in text, though.
+
+For self-contained tags that do not have textual content, omit closing tags where the HTML5 specification permits it. Avoid the XML form. This is fine:
+
+```html
+<link rel="stylesheet" href="/static/css/style.css">
+```
+
+Elements that do have textual content wherein the specification permits omitting the end tag, should not have their end tag omitted. `<li>` and `<p>`, for example, may have their end tags omitted in the specification, but it's easier to spot the scope of an element with the explicit closing tag in place:
+
+```html
+<ul>
+  <li>List item!</li>
+</ul>
+
+<p>A paragraph of text!</p>
+
+<div>While this div, being a block-level element, would implicitly have closed the above P element if its end tag was omitted, the scope of the above element is more obvious with the explicit closing tag.</div>
+```
+
+Use the short form for attributes like `checked` on `<input>` and `selected` on `<option>`:
+
+```html
+<select>
+  <option selected value="1">I'm the default option</option>
+  <option value="2">I'm not</option>
+</select>
+```
+
+## SVGs
+
+Where possible, you should usually prefer inlining an SVG in HTML rather than including it with `<img>` or applying it with a `background-image`. This permits targeting SVG paths in CSS for things like hover effects.
+
+When inlining SVGs, be careful with SVGs exported by Adobe Illustrator. Apart from being vastly bigger than they need to be, they almost invariably end up with SVGs with identical IDs, identical class names, and inline `<style>` blocks. This often causes a completely different SVG included in one place on a page to apply its styles to paths in an earlier part of the document. The general cleanup guide is this:
+
+1. Remove the `<?xml` declaration.
+2. Remove all attributes from the root `svg` element except `viewBox`.
+3. Remove the entire `<defs>` block if one is present.
+4. Remove any explicit `fill=`, `stroke=` attributes on paths.
+5. Replace class names with ones conforming to our naming conventions (or for SVGs with a single colour, like most icons, remove class names altogether)
+6. Use CSS (within the standard frontend build system, not in the SVG itself) to style the SVGs, if necessary.
+
 # Python style guidelines
 
 If in doubt, [PEP 8](https://www.python.org/dev/peps/pep-0008/).
@@ -334,7 +382,6 @@ View classes should have their attributes in this order:
 * [ ] Vertical Rythm
 
 ## HTML
-* [ ] Why SVG's are best used inline instead of as a `src` or `bgi`
 * [ ] Sections don't all have to be a unique class
 * [ ] Explain the `_Header` `_Body` style way of doing things and the benefits
 * [ ] Explain the standard classes `_Title`, `_Text`, etc.
