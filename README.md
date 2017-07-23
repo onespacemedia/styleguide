@@ -423,7 +423,8 @@ Use ES6 `for...of` loops, rather than ES5 `for`:
 ```javascript
 for (const animal of animals) {
   animal.makeNoise()
-}```
+}
+```
 
 
 # Python guidelines
