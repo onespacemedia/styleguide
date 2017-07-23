@@ -1,8 +1,8 @@
 # Introduction
 
-As OSM moves forward and grows as a reputable design agency, it’s imperative to make sure as a team we are consistently producing work that makes us unique and stand out from the crowd. We have written this styleguide for your reference as a member of the development team to outline what is expected and how to achieve the highest possible standard as project size and frequency increase.
+As OSM moves forward and grows as a reputable design agency, it’s imperative to make sure as a team we are consistently producing work that makes us unique and stand out from the crowd. This styleguide will help developers achieve consistency and the highest standard of work as project size and frequency increase.
 
-As the projects we start to work on become larger in scale and longer-running, it is very important that we work in a unified way and with a ever growing team with different specialities and abilities. It is necessary to keep the process streamlined in order to:
+As the projects we work on become larger in scale and longer-running, it is very important that we work in a unified way and with a ever growing team with different specialities and abilities. It is necessary to keep the process streamlined in order to:
 
 - Keep everything maintainable.
 - Keep code transparent, sane, and readable.
@@ -19,11 +19,11 @@ A web server will be spawned on port 3000. As you edit the README.md it will aut
 
 # Consistency
 
-To quote PEP8,
+To quote [PEP 8](https://www.python.org/dev/peps/pep-0008/),
 
 > A style guide is about consistency. Consistency with this style guide is important. Consistency within a project is more important. Consistency within one module or function is the most important.
 
-As the current set of rules evolved over time, many older projects will not be conformant with them. If you find yourself revisiting an older project, it is more important to stay consistent with the rest of that project than it is to enforce these rules.
+Because our rules evolved over time, many older projects will not conform to them. If you find yourself revisiting an older project, it is more important to stay consistent with the rest of that project than it is to enforce these rules.
 
 There is one exception to this: *Do not escalate CSS nesting specifity wars.* This harms maintainability in the future. If you possibly can, create a new, non-conflicting class for any new components that you add.
 
@@ -317,7 +317,7 @@ Function parameters should have a space after each comma, but never before:
 
 ### Jinja macros
 
-If your macro takes a lot of arguments, consider whether you can consolidate those which content into a single one.
+If your macro takes many arguments, consider whether you can consolidate content-related ones into a single argument.
 
 An example might be a macro called like this, to render a card for a news article:
 
@@ -354,7 +354,7 @@ This has a bonus of moving excessive logic out of templates into Python, where a
 
 ## SVGs
 
-Where possible, you should usually prefer inlining an SVG in HTML rather than including it with `<img>` or applying it with a `background-image`. This permits targeting SVG paths in CSS for things like hover effects an animations.
+Where possible, SVGs should be inline in HTML rather than included with `<img>` or applied with a `background-image`. This permits targeting SVG paths in CSS for things like hover effects and animations.
 
 With a few rare exceptions, SVGs should contain only `path` elements, and you should be able to target the visible parts of the path with `fill` alone (rather than strokes). This gives a single target for CSS, and a single CSS property for styling it. Ask a designer to convert the file for you if you don't know how to convert it yourself.
 
@@ -371,7 +371,7 @@ When inlining SVGs, be careful with SVGs exported by Adobe Illustrator. Apart fr
 
 # JavaScript guidelines
 
-We are conformant with the [Standard Style](https://standardjs.com/). In all semi-recent projects, this is enforced by the build system. To condense the Standard authors' summary:
+We conform to the [Standard Style](https://standardjs.com/). In all semi-recent projects, this is enforced by the build system. To condense the Standard authors' summary:
 
 - Two space for indentation
 - Single quotes for strings, except to avoid escaping
@@ -381,13 +381,13 @@ We are conformant with the [Standard Style](https://standardjs.com/). In all sem
 - Use `===` instead of `==`
 - Always prefix browser globals with `window`, except `document` and `navigator`
 
-The one exception we've made to those rules is that unused variables are a warning during development, not an error - unused variables should not make their way into production code.
+The one exception we've made to Standard's rules is that unused variables are a warning during development, not an error - unused variables should not make their way into production code.
 
 Read the [complete set of rules](https://standardjs.com/rules.html) on the Standard site for more.
 
 ## ES6 features
 
-These rules apply for scripts within our frontend build system, which are transpiled to universally-browser-friendly ES5. In the rare cases where inline JavaScript is used in a document, you should avoid ES6 features, as they are not universally and consistently implemented in all the browsers we currently support.
+These rules apply for scripts processed by our frontend build system, which are transpiled to universally-browser-friendly ES5. In the rare cases where inline JavaScript is used in a document, you should avoid ES6 features, as they are not universally and consistently implemented in all the browsers we support.
 
 Always use `let` or `const`, never `var`. Always use `const` for locals which are not reassigned.
 
@@ -429,7 +429,7 @@ for (const animal of animals) {
 
 # Python guidelines
 
-If in doubt, [PEP 8](https://www.python.org/dev/peps/pep-0008/).
+If in doubt, follow [PEP 8](https://www.python.org/dev/peps/pep-0008/).
 
 ## String quotes
 
