@@ -96,19 +96,21 @@ Example follow:
 
 ## Stylelint and grouping properties
 
-[Stylelint](https://stylelint.io/) is utilised to try and catch errors when code is pushed. Take a second to understand the [configuration](https://github.com/onespacemedia/project-template/blob/develop/%7B%7Bcookiecutter.repo_name%7D%7D/package.json#L119) we use.
+[Stylelint](https://stylelint.io/) is utilised to try and catch errors when code is pushed. You should take a second to understand the [configuration](https://github.com/onespacemedia/project-template/blob/develop/%7B%7Bcookiecutter.repo_name%7D%7D/package.json#L119) we use.
 
-Properties are grouped together so they’re easily readable with a empty line between, in this order:
+Properties are grouped for readability, with an empty line separating adjacent groups, in this order:
 
- ```css
+```css
  .nsp-Component_ChildNode {
+    @include and @apply declarations;
+
     content properties;
 
     position properties;
 
     flex properties;
 
-    display margin and height properties;
+    display, width, height, margin and padding properties;
 
     font and text properties;
 
@@ -116,13 +118,11 @@ Properties are grouped together so they’re easily readable with a empty line b
 
     animation and transition properties;
   }
- ```
-
-We recommend read the documentation above about linting as we also use it for Javascript as well. If you are familiar with linting then take a moment to run through the order above.
+```
 
 ## Commenting
 
-With the increasing size of Onespacemedia projects it is increasingly important to comment your CSS. Trying to understand your own code is difficult enough. Someone inheriting the project will find it more difficult than that.
+With the increasing complexity of Onespacemedia projects it is increasingly important to comment your CSS. Trying to understand your own code is difficult enough. Someone inheriting the project will find it more difficult than that.
 
 There should always be a heading comment at the top of a .css file that includes the component name and the namespace selector:
 
@@ -162,11 +162,13 @@ If you use "magic" numbers in your CSS, add a comment above it explaining why yo
 
 Comment any strange or clever CSS. Sometimes cross-browser fixes will require unusual rules that would not make any sense to a first-time observer, who might see it as a target for refactoring.
 
+If you must add a `/* stylelint-disable */` comment to your CSS to bypass linting, it is good form to write a good explanatory comment about why it is disabled immediately above the line.
+
 # HTML guidelines
 
 ## General formatting rules
 
-Tag names, attributes, and attribute values should be in lower-case where possible.
+Tag names, attributes, and attribute values should be in lowercase where possible.
 
 Attribute values should be quoted in "double quotes"
 
@@ -190,7 +192,7 @@ Elements that do have textual content wherein the specification permits omitting
 <div>While this div, being a block-level element, would implicitly have closed the above P element if its end tag was omitted, the scope of the above element is more obvious with the explicit closing tag.</div>
 ```
 
-An empty line between two HTML elements at the same indentation level is optional. Use your judgement.</p>
+An empty line between two HTML elements at the same indentation level is optional. Use your judgement as to whether the elements merit one by having distinct enough roles.
 
 Use the short form for attributes like `checked` on `<input>` and `selected` on `<option>`:
 
@@ -426,7 +428,6 @@ for (const animal of animals) {
 }
 ```
 
-
 # Python guidelines
 
 If in doubt, follow [PEP 8](https://www.python.org/dev/peps/pep-0008/).
@@ -541,6 +542,8 @@ title = models.CharField(
 
 All models must define a `__str__` method in Python 3 projects, or `__unicode__` for Python 2.
 
+All models should define an `ordering` attribute in their `Meta` class. Postgresql, our preferred database, will return rows in an order that is ["unspecified"](https://www.postgresql.org/docs/9.1/static/queries-order.html) if you do not. Don't rely on primary key ordering to give date-added-based ordering; this is not guaranteed. Implement a "date added" field and have explicit ordering on that column.
+
 ### About various field types
 
 Don't use a very large `max_length` for `CharField`. Generally, unless there are good technical reasons to do otherwise, don't supply a `max_length` of more than 300. If you need more characters than that, use a `TextField`.
@@ -572,7 +575,7 @@ Order model attributes thusly:
 
 ### Model, field, and app naming
 
-Always ensure that the `verbose_name_plural` for a model is grammatical. Django's default behaviour will pluralise 'Category' as 'Categorys', for example.
+Always ensure that the `verbose_name_plural` for a model makes sense. Django's default behaviour will pluralise 'Category' as 'Categorys', for example.
 
 Where appropriate, supply an appropriate `verbose_name` to ensure that capitalisation is correct for both model names and field names, including appropriate capitalisation for brand names. A model called `Faq` should have a `verbose_name` of 'FAQ'. A 'linkedin_url' field should have a `verbose_name` of 'LinkedIn URL', to avoid the default admin rendering of 'Linkedin url'.
 
