@@ -47,7 +47,7 @@ Most of these rules are enforced by [Stylelint](https://stylelint.io/), both in 
 
 ## Class naming conventions
 
-We largely follow the [Enduring CSS](http://ecss.io/) convention, which is very similar in philosophy (differing mainly in syntactical details) to the Block, Element, Modifier convention. Specifically, *namespace, block, element, modifier*. Class names will take one of three forms.
+We largely follow the [Enduring CSS](http://ecss.io/) convention, which is very similar in philosophy (differing mainly in syntactical details) to the [Block, Element, Modifier](http://getbem.com/naming/) convention. Specifically, *namespace, block, element, modifier*. Class names will take one of three forms.
 
 1. `namespace-Block`
 2. `namespace-Block-modifier`
