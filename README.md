@@ -45,47 +45,84 @@ Most of these rules are enforced by [Stylelint](https://stylelint.io/), both in 
 - Properties should always be lowercase.
 - Shorten colour values - use #fff rather than #ffffff, for example.
 
-Example follows:
+## Class naming conventions
+
+We largely follow the [Enduring CSS](http://ecss.io/) convention, which is very similar in philosophy (differing mainly in syntactical details) to the Block, Element, Modifier convention. Specifically, *namespace, block, element, modifier*. Class names will take one of three forms.
+
+1. `namespace-Block`
+2. `namespace-Block-modifier`
+2. `namespace-Block_Element`
+3. `namespace-Block_Element-modifier`
+
+Here, `namespace` is a two-to-four letter namespace. This could be a distinct set of types of different components, or it could be For example, for things related to the header, this can be namespaced under `hd-`. Different kinds of 'cards' would be namespaced `crd-`. Different kinds of modular sections would be `sec-`.
+
+A `block` is a distinctive component with standalone meaning. Its first letter should always be capitalised. If you are struggling to find a name for it that doesn't fit in a single word, use `CondensedTitleCase` (though you're probably overthinking it).
+
+An `element` is something which only ever exists within the context of a `block`.
+
+A `modifier` describes a *minor* variation of a particular block or element.
+
+An extremely simple example follows. Here is our HTML structure:
+
 
 ```css
-  [selector] ,[related selector],
-  [unrelated selector] {
-    [property]: [value];
-    [<--declaration-->]
-  }
+.sec-Section {
+  /* This is a standard section on a page, in cases where most or all sections
+  on a page have similar layout and spacing rules. The `.sec` namespace is
+  short for "sections", for pages that are built out of distinct, logically
+  separate sections. */
+  padding-top: 4vr;
+  padding-bottom: @padding-top;
 
-  .nsp-Component_ChildNode, .nsp-Component_ChildNode-childnode,
-  .nsp-ComponentUnrelated_ChildNode {
-    display: block;
-  }
+  background-color: #fff;
+}
+
+.sec-Section-grey {
+  /* This follows all the same rules as `.sec-Section` above, with one tiny
+  modification: its background colour is grey. */
+  background-color: var(--Color_Grey-light);
+}
+
+.sec-Section_Inner {
+  /* This is the inner part of a section. This doesn't have any applicability
+  outside of a section. (Of course, containers are used elsewhere on a site,
+  but we do not use utility classes.) */
+  @include Grid_Container;
+}
+
+.sec-Section_Header {
+  /* This defines the header for a section, with rules for how it will be
+  spaced from the content. */
+  margin-bottom: 2vr;
+
+  text-align: center;
+}
+
+.sec-Section_Title {
+  /* A section title which lives inside the above component. Its role is
+  logically distinct, and separable, from being part of the section header -
+  we define centre-aligned text and _Header above, not here. All this does is
+  describe a standard font that will be used on all (or most) section titles.
+  */
+  @include Font_24-32;
+}
+
+.sec-Section_Body {
+  /* This defines the 'body' of a section. Note that we don't actually have
+  any assumptions about what that content might be! It might be a WYSIWYG
+  block, or it might be a list of things, or it might be a picture, - don't
+  make assumptions! More than likely whatever sits inside .sec-Section_Content
+  will be namespaced differently. For example, if it was a list of news
+  articles, we'd probably want to have something in the .lst- namespace. A
+  list of news articles is a list of news articles that could be
+  used in all sorts of ways, not just in something built with the section
+  builder. */
+}
 ```
-
-Exceptions:
-
-- Rulesets that carry only one declaration each;
-- Conform to the one-reason-to-change-per-line rule;
-- Sharing enough similarities that they don’t need to be read as thoroughly as other rulesets - there is more benefit in being able to scan their selectors.
-
-Example follow:
-
- ```css
- .nsp-Component_ChildNode {
-   display: inline-block;
-   width: 16px;
-   height: 16px;
-
-   background-image: url(/img/photo.jpg);
- }
-
- .nsp-Component_ChildNode-home     { background-position:   0     0  ; }
- .nsp-Component_ChildNode-person   { background-position: -16px   0  ; }
- .nsp-Component_ChildNode-files    { background-position:   0   -16px; }
- .nsp-Component_ChildNode-settings { background-position: -16px -16px; }
- ```
 
 ## Selectors
 
-Do not have duplicate selectors. You should only need to look in one block to see all the properties and states of an element.
+Do not have duplicate selectors. You should only need to look in one block to see all the properties and states of any given component.
 
 If your block has more than one selector, related selectors should be on the same line, and unrelated selectors should be on a new line.
 
