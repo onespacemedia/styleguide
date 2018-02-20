@@ -25,16 +25,11 @@ To quote [PEP 8](https://www.python.org/dev/peps/pep-0008/),
 
 Because our rules evolved over time, many older projects will not conform to them. If you find yourself revisiting an older project, it is more important to stay consistent with the rest of that project than it is to enforce these rules.
 
-There is one exception to this: *Do not escalate CSS nesting specifity wars.* This harms maintainability in the future. If you possibly can, create a new, non-conflicting class for any new components that you add.
+There is one exception to this: *Do not escalate CSS nesting specifity wars.* This harms maintainability in the future. If you possibly can, create a new, non-conflicting class for any new components.
 
 # CSS guidelines
 
-Writing clean code is something that is good to look at, and although we use stylelist and now with the introduction of pre-commits we can rely on [Stylelint](https://stylelint.io/) to slap our wrists when we write something poorly or in the incorrect way, it is still good to understand as a team what the standard syntax should be when writing good sexy CSS, this includes:
-
-- 80 character wide columns, to aid readability
-- Multi-line CSS
-- Meaningful use of whitespace
-- Grouping properties
+Most of these rules are enforced by [Stylelint](https://stylelint.io/), both in pre-commit hooks and in CI.
 
 ## General formatting rules
 
@@ -90,13 +85,71 @@ Example follow:
 
 ## Selectors
 
-- Related selectors should be on the same line, unrelated selectors should be on a new line
-- Never use IDs as selectors
-- Do not use duplicate selectors.
+Do not have duplicate selectors. You should only need to look in one block to see all the properties and states of an element.
 
-## Stylelint and grouping properties
+If your block has more than one selector, related selectors should be on the same line, and unrelated selectors should be on a new line.
 
-[Stylelint](https://stylelint.io/) is utilised to try and catch errors when code is pushed. You should take a second to understand the [configuration](https://github.com/onespacemedia/project-template/blob/develop/%7B%7Bcookiecutter.repo_name%7D%7D/package.json#L119) we use.
+### Specifity
+
+As much as possible, you should always target a single class name, and as much as possible this should not be dependent on its context.
+
+### Modifier classes
+
+Modifier classes should not be nested if they target the same element. Prefer this:
+
+```css
+.crd-Card {
+  background-color: #fff;
+}
+
+.crd-Card-transparent {
+  background-color: transparent;
+}
+```
+
+Rather than this:
+
+```css
+.crd-Card {
+  background-color: #fff;
+
+  &.crd-Card-transparent {
+    background-color: transparent;
+  }
+}
+```
+
+This keeps the specifity to a single class name.
+
+If you need to modify the attributes of a card based on the type or state of one of its ancestors, you should usually nest the parent selector inside the child element's definition block, rather than nesting the child element in the parent's definition block.
+
+
+```css
+.crd-Card_Body {
+  color: var(--Color_Body);
+
+  .crd-Card:hover & {
+    color: var(--Color_Blue);
+  }
+}
+```
+
+In this case, it means you only need to look at one CSS block to see all the possible states for `.crd-Card`.
+
+### !important
+
+Do your best to avoid `!important`. There are rare exceptions, such as overriding other `!important` declarations added by third-party code, or inline styles added by the same, but they are rare.
+
+### IDs as selectors
+
+Don't target IDs in the form `#selector`, as it has [infinitely more specifity](https://css-tricks.com/specifics-on-css-specificity/) than class names.
+
+If you are forced to target an ID (such as with elements injected by third-party code), target `*[id="foo"]` instead.
+
+
+## Grouping properties
+
+You should take a second to understand the [grouping configuration](https://github.com/onespacemedia/project-template/blob/develop/%7B%7Bcookiecutter.repo_name%7D%7D/package.json#L119) we use.
 
 Properties are grouped for readability, with an empty line separating adjacent groups, in this order:
 
@@ -162,9 +215,11 @@ If you use "magic" numbers in your CSS, add a comment above it explaining why yo
 
 Comment any strange or clever CSS. Sometimes cross-browser fixes will require unusual rules that would not make any sense to a first-time observer, who might see it as a target for refactoring.
 
-If you must add a `/* stylelint-disable */` comment to your CSS to bypass linting, it is good form to write a good explanatory comment about why it is disabled immediately above the line.
+If you must add a `/* stylelint-disable */` comment to your CSS to bypass linting, it is often good form to write an explanatory comment about why it is disabled immediately above the line, to avoid the tendency to `/* stylelint-disable */` whenever a linting error is hit (for reasons both valid and invalid).
 
 # HTML guidelines
+
+In these examples, class names are omitted for readability.
 
 ## General formatting rules
 
@@ -192,7 +247,7 @@ Elements that do have textual content wherein the specification permits omitting
 <div>While this div, being a block-level element, would implicitly have closed the above P element if its end tag was omitted, the scope of the above element is more obvious with the explicit closing tag.</div>
 ```
 
-An empty line between two HTML elements at the same indentation level is optional. Use your judgement as to whether the elements merit one by having distinct enough roles.
+An empty line between two HTML elements at the same indentation level is optional. Use your judgement.
 
 Use the short form for attributes like `checked` on `<input>` and `selected` on `<option>`:
 
@@ -317,7 +372,7 @@ Function parameters should have a space after each comma, but never before:
 {% set articles = get_news_articles(featured=True, count=5) %}
 ```
 
-### Jinja macros
+### Jinja2 macros
 
 If your macro takes many arguments, consider whether you can consolidate content-related ones into a single argument.
 
@@ -354,7 +409,7 @@ def as_card(self):
 
 This has a bonus of moving excessive logic out of templates into Python, where anything but the most simple logic is much cleaner.
 
-## SVGs
+## Using SVGs
 
 Where possible, SVGs should be inline in HTML rather than included with `<img>` or applied with a `background-image`. This permits targeting SVG paths in CSS for things like hover effects and animations.
 
@@ -420,7 +475,7 @@ const animal = 'cat'
 const animalPlural = `${animal}s`
 ```
 
-Use ES6 `for...of` loops, rather than ES5 `for`:
+Use ES6 `for...of` loops, rather than ES5 `for` when traversing arrays:
 
 ```javascript
 for (const animal of animals) {
@@ -440,21 +495,12 @@ If a Python file consistently uses double quotes, then stay consistent with that
 
 If a file uses a mixture of single and double quotes, use single quotes for new code, but feel free to convert it to use single quotes consistently.
 
-For quoting text that contains an apostrophe, it's fine to use either double quotes or single quotes with backslash escapes inside. This is fine:
+For quoting text that contains an apostrophe, use double quotes. This example would permit grepping for the string "don't":
 
 ```python
 have_bugs = models.BooleanField(
     default=False,
     help_text="Don't check this!"
-)
-```
-
-But this is too:
-
-```python
-explode = models.BooleanField(
-    default=False,
-    help_text='Don\'t check this either!'
 )
 ```
 
@@ -499,7 +545,23 @@ objects = queryset.filter(
 
 ## Import ordering
 
-Use [isort's default ordering](http://timothycrosley.github.io/isort/).
+Use [isort's default ordering](http://timothycrosley.github.io/isort/). Group imports thusly:
+
+1. Imports from `__future__`
+2. Python standard library
+3. Third-party 'globally' installed packages (in our case, always installed in a virtual environment)
+4. Current project
+5. Explicit local imports (relative imports)
+
+Use isort's "Grid" option for multi-line outputs.
+
+Project-local imports should usually be relative imports. Imports from further up the directory structure should come first.
+
+```
+from ...utils.views import FilteredListView
+from ..other_app.models import Taxonomy
+from .models import Article, Category
+```
 
 ## Django model style
 
@@ -515,7 +577,7 @@ class StyleGuide(models.Model):
     )
 ```
 
-There should be a new line before the first argument to a field's constructor, and each argument goes on a new line. This makes diffs easier to read when fields are altered.
+There should be a new line before the first argument to a field's constructor, and each argument goes on a new line. This makes diffs easier to read when arguments are added or deleted.
 
 There should be a dangling comma after the last argument. Again, this makes diffs easier to read (because adding an argument to the end does not affect neighbouring lines).
 
