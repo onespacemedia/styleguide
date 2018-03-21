@@ -17,7 +17,9 @@ This is a [docsify](https://docsify.js.org/#/quickstart) document. To start:
 
 A web server will be spawned on port 3000. As you edit the README.md it will automatically refresh on the front-end.
 
-# Consistency
+# Guidelines for any language
+
+## Consistency
 
 To quote [PEP 8](https://www.python.org/dev/peps/pep-0008/),
 
@@ -26,6 +28,44 @@ To quote [PEP 8](https://www.python.org/dev/peps/pep-0008/),
 Because our rules evolved over time, many older projects will not conform to them. If you find yourself revisiting an older project, it is more important to stay consistent with the rest of that project than it is to enforce these rules.
 
 There is one exception to this: *Do not escalate CSS nesting specifity wars.* This harms maintainability in the future. If you possibly can, create a new, non-conflicting class for any new components.
+
+## Commenting
+
+Comment anything that someone fresh to the project might not understand immediately. Don't write comments for the sake of writing comments. There is no need for this:
+
+```python
+# Initialise the counter variable
+counter = 0
+# Loop over the items.
+for item in some_list:
+    # Add 1 to counter
+    counter = counter + 1
+```
+
+The purpose of comments is not to describe what code does. They are to help other developers understand your code. This is an important distinction.
+
+Anything particularly clever should have a comment (though you may want to see if you can write it in a less clever way). Anything done to work around strange bugs should be commented. Anything which would cause another developer to say "why did they do this instead of X", for values of X being some way that would have been the first, should be commented.
+
+## Variable names
+
+Keystrokes are abundant. While not enforced, you should try to make most of your variable names a single English (or technical) word. A positive Python example of what you should do:
+
+```
+class ThingyListView(ListView):
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        queryset = queryset.filter(page__page=self.request.pages.current)
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['categories'] = Category.objects.all()
+        return context
+```
+
+It would be tempting to shorten `context` and `queryset` to `ctx` and `qs`. This would make your code harder to reason about, because someone has to remember what you meant by `ctx` and `qs` later on.
+
+Variable names should be in accord with the most common community-accepted standard for whatever language you are using. For example, we use function_names_with_underscores in Python, because this is what the Python community has largely agreed to use. We use camelCase in Javascript, because this is what the language's standard library and the browser DOM uses.
 
 # CSS guidelines
 
