@@ -48,7 +48,7 @@ Anything particularly clever should have a comment (though you may want to see i
 
 ## Variable names
 
-Keystrokes are abundant. While not enforced, you should try to make most of your variable names a single English (or technical) word. A positive Python example of what you should do:
+Keystrokes are abundant. While not enforced, your variable names should be at least a single English (or technical) word. A positive Python example of what you should do:
 
 ```
 class ThingyListView(ListView):
