@@ -27,7 +27,7 @@ To quote [PEP 8](https://www.python.org/dev/peps/pep-0008/),
 
 Because our rules evolved over time, many older projects will not conform to them. If you find yourself revisiting an older project, it is more important to stay consistent with the rest of that project than it is to enforce these rules.
 
-There is one exception to this: *Do not escalate CSS nesting specifity wars.* This harms maintainability in the future. If you possibly can, create a new, non-conflicting class for any new components.
+There is one exception to this: *Do not escalate CSS nesting specificity wars.* This harms maintainability in the future. If you possibly can, create a new, non-conflicting class for any new components.
 
 ## Commenting
 
@@ -166,7 +166,7 @@ Do not have duplicate selectors. You should only need to look in one block to se
 
 If your block has more than one selector, related selectors should be on the same line, and unrelated selectors should be on a new line.
 
-### Specifity
+### Specificity
 
 As much as possible, you should always target a single class name, and as much as possible this should not be dependent on its context.
 
@@ -196,7 +196,7 @@ Rather than this:
 }
 ```
 
-This keeps the specifity to a single class name.
+This keeps the specificity to a single class name.
 
 If you need to modify the attributes of a card based on the type or state of one of its ancestors, you should usually nest the parent selector inside the child element's definition block, rather than nesting the child element in the parent's definition block.
 
@@ -213,13 +213,50 @@ If you need to modify the attributes of a card based on the type or state of one
 
 In this case, it means you only need to look at one CSS block to see all the possible states for `.crd-Card`.
 
+### Targeting adjacent adjacent elements
+
+Generally, you should avoid `+` to target adjacent elements, when those adjacent elements use the same class name, and the parent element only contains (or can be made to only contain) elements of that class name selector. Take this example:
+
+```
+<ul class="lst-Stacked">
+  <li class="lst-Stacked_Item">...</li>
+  <li class="lst-Stacked_Item">...</li>
+  <li class="lst-Stacked_Item">...</li>
+</ul>
+```
+
+The correct way to target adjacent elements (in this example, to put a margin between them) would be this:
+
+```css
+.lst-Stacked {
+  margin-top: 1vr;
+
+  &:first-child {
+    margin-top: 0;
+  }
+}
+```
+
+Instead of this:
+
+```css
+.lst-Stacked {
+  margin-top: 1vr;
+
+  & + & {
+    margin-top: 0;
+  }
+}
+```
+
+
 ### !important
 
 Do your best to avoid `!important`. There are rare exceptions, such as overriding other `!important` declarations added by third-party code, or inline styles added by the same, but they are rare.
 
 ### IDs as selectors
 
-Don't target IDs in the form `#selector`, as it has [infinitely more specifity](https://css-tricks.com/specifics-on-css-specificity/) than class names.
+Don't target IDs in the form `#selector`, as it has [infinitely more specificity](https://css-tricks.com/specifics-on-css-specificity/) than class names.
 
 If you are forced to target an ID (such as with elements injected by third-party code), target `*[id="foo"]` instead.
 
@@ -714,7 +751,19 @@ Order model attributes thusly:
 
 ### Model, field, and app naming
 
-Always ensure that the `verbose_name_plural` for a model makes sense. Django's default behaviour will pluralise 'Category' as 'Categorys', for example.
+Always ensure that the plural form of a model name makes sense. Django's default behaviour will pluralise 'Category' as 'Categorys', for example. Use `verbose_name_plural` to correct this:
+
+```python
+
+class Category(models.Model):
+    title = models.CharField(
+        max_length=100,
+    )
+
+    class Meta:
+        verbose_name_plural = 'categories'
+```
+
 
 Where appropriate, supply an appropriate `verbose_name` to ensure that capitalisation is correct for both model names and field names, including appropriate capitalisation for brand names. A model called `Faq` should have a `verbose_name` of 'FAQ'. A 'linkedin_url' field should have a `verbose_name` of 'LinkedIn URL', to avoid the default admin rendering of 'Linkedin url'.
 
@@ -735,13 +784,9 @@ View classes should have their attributes in this order:
 
 ## CSS
 * [ ] Margin vs Padding on sections
-* [ ] `& + &` vs all items having it and explicitly defining the `{first,last}-child`
-* [ ] `Why --Grid_Container` can't take the `percentage(x, x)` as well
 * [ ] How to do cards height (iOS issues with height: 100%)
 * [ ] How to do overflow on body with iOS
-* [ ] Enduring CSS - Understanding the problem
 * [ ] Reusability - Naming
-* [ ] Specifity
 * [ ] Definition Properties
 * [ ] Vertical Rythm
 
