@@ -29,6 +29,12 @@ Because our rules evolved over time, many older projects will not conform to the
 
 There is one exception to this: *Do not escalate CSS nesting specificity wars.* This harms maintainability in the future. If you possibly can, create a new, non-conflicting class for any new components.
 
+## Legibility vs cleverness & conciseness
+
+Your code may be picked up by another developer at any time, or you might be called upon to work on a project on which you worked many months ago. Consequently, legibility is important; it reduces the overhead of getting involved (or re-involved) with a project.
+
+If there is a choice between a clever and concise way of writing something, and a less clever and more verbose way of writing something to the same effect, you should tend towards the latter.
+
 ## Commenting
 
 Comment anything that someone fresh to the project might not understand immediately. Don't write comments for the sake of writing comments. There is no need for this:
@@ -44,7 +50,9 @@ for item in some_list:
 
 The purpose of comments is not to describe what code does. They are to help other developers understand your code. This is an important distinction.
 
-Anything particularly clever should have a comment (though you may want to see if you can write it in a less clever way). Anything done to work around strange bugs should be commented. Anything which would cause another developer to say "why did they do this instead of X", for values of X being some way that would have been the first, should be commented.
+Anything particularly clever should have be commented (though you may want to see if you can write it in a less clever way). "Magic" numbers and behaviour should have a comment. Anything done to work around strange bugs should be commented. Anything which would cause another developer to say "why did they do this instead of X" (for values of X being some way that would have been you would have tried or did try) should be commented.
+
+If you know your code is going to be tricky, the [rubber duck effect](https://blog.codinghorror.com/rubber-duck-problem-solving/) suggests that you should write your comments *first* - the act of describing a problem often makes it easier to solve!
 
 ## Variable names
 
