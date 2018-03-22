@@ -357,7 +357,7 @@ For self-closing tags that do not have textual content, omit closing tags where 
 <link rel="stylesheet" href="/static/css/style.css">
 ```
 
-Elements that do have textual content wherein the specification permits omitting the end tag, should not have their end tag omitted. `<li>` and `<p>`, for example, may have their end tags omitted in the specification, but it's easier to spot the scope of an element with the explicit closing tag in place:
+In cases where the HTML5 specification permits omitting an end tag, but the element has textual content, you should not omit the end tag. `<li>` and `<p>`, for example, may have their end tags omitted in the specification, but it's easier to spot the scope of an element with the explicit closing tag in place:
 
 ```html
 <ul>
