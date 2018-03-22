@@ -351,7 +351,7 @@ Attribute values should be quoted in "double quotes"
 
 Where an element starts on a new line to a parent element, it should be indented by two spaces. Elements that are rendered as blocks (whether they are block-level elements in the specification or made to render that way in CSS) should usually start on a new line. Avoid doing this if it will cause an ungrammatical space in text, though.
 
-For self-contained tags that do not have textual content, omit closing tags where the HTML5 specification permits it. Avoid the XML form. This is fine:
+For self-closing tags that do not have textual content, omit closing tags where the HTML5 specification permits it. Avoid the XML form. This is fine:
 
 ```html
 <link rel="stylesheet" href="/static/css/style.css">
