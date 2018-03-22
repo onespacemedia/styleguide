@@ -249,10 +249,8 @@ Instead of this:
 
 ```css
 .lst-Stacked {
-  margin-top: 1vr;
-
   & + & {
-    margin-top: 0;
+    margin-top: 1vr;
   }
 }
 ```
