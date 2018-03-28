@@ -337,6 +337,12 @@ Comment any strange or clever CSS. Sometimes cross-browser fixes will require un
 
 If you must add a `/* stylelint-disable */` comment to your CSS to bypass linting, it is often good form to write an explanatory comment about why it is disabled immediately above the line, to avoid the tendency to `/* stylelint-disable */` whenever a linting error is hit (for reasons both valid and invalid).
 
+## Vertical rhythm and the `vr` unit
+
+We use [postcss-lh](https://github.com/jameskolce/postcss-lh) to give us a custom CSS unit based on the root line height of the document (typically, 24px). We've renamed `postcss-lh`'s default `lh` unit to `vr`, for [vertical rhythm](http://webtypography.net/2.2.2).
+
+You can and should use these units for spacing and sizing where appropriate. For places where spacing is not whole numbers (or where you can't round up to whole numbers without severe visual deviation from the design, don't use fractional units other than .5. Assuming `1vr` is 24 pixels, 6 pixels should be expressed as `6px`, not `0.25vr`.
+
 # HTML guidelines
 
 In these examples, class names are omitted for readability.
