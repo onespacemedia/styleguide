@@ -831,6 +831,28 @@ View classes should have their attributes in this order:
 3. Methods inherited from Django generic views, in alphabetical order
 4. Custom methods, in alphabetical order
 
+# Git usage
+
+## Keep commits specific
+
+Code commits should be as small as reasonably possible, and should contain specific changes described accurately in the commit message.  Do not use generic commit messages such as "Made changes" or "Text tweak". Be descriptive!
+
+Some tools will allow you to make changes without a commit message. Never do this.
+
+If you have made multiple changes use the interactive commit system (`git commit -p`) and cherry-pick the feature-specific code. Do not group multiple changes together in the same commit.
+
+## Squashing & merging branches
+
+Squashing & merging is good when it does not remove any interesting history. Don't squash & merge if your branch history is long - it is likely that the history would be useful to other developers.
+
+It's fine to squash commits if, for example, you made one commit and then a few others to fix linting (as often happens on our [project template](https://github.com/onespacemedia/project-template)), because this history is not very important. On the other hand, if someone wants to look at the version history to understand how or why a certain bit of code was added, they may be upset to find it's a 10,000-line squashed commit with, say, the message "Write CRM system".
+
+## Things you should avoid
+
+There is almost never a good reason for force-pushing (with the `-f` option on command-line `git`).
+
+Generally, you should avoid `--no-verify` to bypass pre-commit and pre-push hooks. Perhaps every developer knows the moment their one-line change that they were sure could not possibly break the build did, in fact, break the build.
+
 # TODO:
 
 ## CSS
