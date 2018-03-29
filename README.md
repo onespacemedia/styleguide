@@ -341,7 +341,7 @@ If you must add a `/* stylelint-disable */` comment to your CSS to bypass lintin
 
 We use [postcss-lh](https://github.com/jameskolce/postcss-lh) to give us a custom CSS unit based on the root line height of the document (typically, 24px). We've renamed `postcss-lh`'s default `lh` unit to `vr`, for [vertical rhythm](http://webtypography.net/2.2.2).
 
-You can and should use these units for spacing and sizing where appropriate. For places where spacing is not whole numbers (or where you can't round up to whole numbers without severe visual deviation from the design, don't use fractional units other than .5. Assuming `1vr` is 24 pixels, 6 pixels should be expressed as `6px`, not `0.25vr`.
+You can and should use these units for spacing and sizing where appropriate. Always use whole numbers or halves (e.g. `0.5vr`. Where you can't round up to one of these without severe visual deviation from the design, don't use `vr`. Assuming `1vr` is 24 pixels, 6 pixels should be expressed as `6px`, not `0.25vr`.
 
 # HTML guidelines
 
