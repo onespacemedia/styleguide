@@ -713,6 +713,21 @@ from ..other_app.models import Taxonomy
 from .models import Article, Category
 ```
 
+## String formatting
+
+For Python 3.6 projects (all new projects, and all projects since late 2017), you should use [f-strings](https://www.python.org/dev/peps/pep-0498/) to format values into a string.
+
+```python
+class Animal(models.Model):
+
+    # ....
+
+    def __str__(self):
+        return f'{self.name}, the {self.species}'
+```
+
+As well as being more concise, bad string formats are a _compile-time error_, so they will be caught as soon as your program starts. `.format` and the `%` operator will raise an exception at *runtime*, where they might go unnoticed for a while.
+
 ## Django model style
 
 This is the general form of model fields:
