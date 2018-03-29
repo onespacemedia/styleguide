@@ -345,7 +345,7 @@ You can and should use these units for spacing and sizing where appropriate. Alw
 
 ## Other units
 
-Avoid `em`; there are only very rare cases where using it is necessary.
+Avoid `em`; there are only very rare cases where this unit is necessary.
 
 You never need to use `rem` - our build system translates `rem` into `px` units (via [postcss-pxtorem](https://github.com/cuth/postcss-pxtorem)), so just use `px` instead.
 
@@ -356,6 +356,12 @@ Grid gutters and other horizontal _margins_ should be in `px`.
 Vertical margins and padding should usually be specified in `vr` or `px`.
 
 For percentages, make liberal use of `calc`, especially for things that follow a site's grid. To specify a width of 5 columns out of twelve, minus the grid gutter, use `width: calc(5 /  12 * 100% - var(--Grid_Gutter))`. It is much easier to understand the intent in this example at a quick glance than `width: calc(41.66% - var(--Grid_Gutter))`.
+
+## Vendor prefixes
+
+Generally, you don't need to add vendor prefixes to property names and values; [Autoprefixer](https://github.com/postcss/autoprefixer) handles this for you in our build system.
+
+It is occasionally necessary to use vendor prefixes to work around weird cross-browser bugs, and in the vanishingly small number of cases that Autoprefixer does not work. In both these cases, you should add a comment to explain why you are using vendor prefixes.
 
 # HTML guidelines
 
