@@ -559,18 +559,22 @@ This has a bonus of moving excessive logic out of templates into Python, where a
 
 Where possible, SVGs should be inline in HTML rather than included with `<img>` or applied with a `background-image`. This permits targeting SVG paths in CSS for things like hover effects and animations.
 
-With a few rare exceptions, SVGs should contain only `path` elements, and you should be able to target the visible parts of the path with `fill` alone (rather than strokes). This gives a single target for CSS, and a single CSS property for styling it. Ask a designer to convert the file for you if you don't know how to convert it yourself.
+For frequently-used icons, make liberal use of spriting to reduce the size of the document. Examples of sprite usage can be found in our [project template](https://github.com/onespacemedia/project-template).
 
-When inlining SVGs, be careful with SVGs exported by Adobe Illustrator. Apart from being vastly bigger than they need to be, they almost invariably cause SVGs with identical IDs, identical class names, and inline `<style>` blocks. This often causes an SVG to apply its styles to paths in a different SVG earlier in the document.
+With a few rare exceptions, SVGs should contain only `path` elements, and you should be able to target the visible parts of the path with `fill` alone (rather than strokes). This gives a single target for CSS, and a single CSS property for styling it. Ask a designer to convert the SVG for you if you don't know how to convert it yourself.
 
-[SVGOMG](https://jakearchibald.github.io/svgomg/) is a useful tool for cleaning up SVG files. Alternatively, the manual cleanup guide is this:
+When inlining SVGs, be careful with SVGs exported by Adobe Illustrator and Sketch. Apart from being vastly bigger than necessary, they almost invariably cause SVGs with identical IDs, identical class names, and inline `<style>` blocks. This often causes an SVG to apply its styles to paths in a different SVG earlier in the document.
+
+[SVGOMG](https://jakearchibald.github.io/svgomg/) is a useful tool for cleaning up SVG files; once you've worked out a good set of options you will find it does the right thing the vast majority of the time.
 
 1. Remove the `<?xml` declaration.
 2. Remove all attributes from the root `svg` element except `viewBox`.
 3. Remove the entire `<defs>` block if one is present.
-4. Remove any explicit `fill=` attributes on paths.
-5. Replace class names with ones conforming to our naming conventions (or for SVGs with a single colour, like most icons, remove class names altogether)
-6. Use CSS (within the standard frontend build system, not in the SVG itself) to style the SVGs, if necessary.
+4. Remove any `id` attributes.
+5. Remove any `g` groups.
+6. Remove any explicit `fill=` attributes on paths.
+7. Replace class names with ones conforming to our naming conventions (or for SVGs with a single colour, like most icons, remove class names altogether)
+8. Use CSS (within the standard frontend build system, not in the SVG itself) to style the SVGs, if necessary.
 
 # JavaScript guidelines
 
