@@ -343,6 +343,20 @@ We use [postcss-lh](https://github.com/jameskolce/postcss-lh) to give us a custo
 
 You can and should use these units for spacing and sizing where appropriate. Always use whole numbers or halves (e.g. `0.5vr`. Where you can't round up to one of these without severe visual deviation from the design, don't use `vr`. Assuming `1vr` is 24 pixels, 6 pixels should be expressed as `6px`, not `0.25vr`.
 
+## Other units
+
+Avoid `em`; there are only very rare cases where using it is necessary.
+
+You never need to use `rem` - our build system translates `rem` into `px` units (via [postcss-pxtorem](https://github.com/cuth/postcss-pxtorem)), so just use `px` instead.
+
+Otherwise, you should feel free to use whatever other unit is necessary to get a pleasing result.
+
+Grid gutters and other horizontal _margins_ should be in `px`.
+
+Vertical margins and padding should usually be specified in `vr` or `px`.
+
+For percentages, make liberal use of `calc`, especially for things that follow a site's grid. To specify a width of 5 columns out of twelve, minus the grid gutter, use `width: calc(5 /  12 * 100% - var(--Grid_Gutter))`. It is much easier to understand the intent in this example at a quick glance than `width: calc(41.66% - var(--Grid_Gutter))`.
+
 # HTML guidelines
 
 In these examples, class names are omitted for readability.
