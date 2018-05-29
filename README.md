@@ -404,6 +404,17 @@ Use the short form for attributes like `checked` on `<input>` and `selected` on 
 </select>
 ```
 
+## Comments
+
+It is rare that it is useful for comments to be in the rendered HTML; you should usually use template-syntax `{# comments #}`, rather than `<!-- comments -->`. Similarly, for inline JavaScript, use template syntax instead of JavaScript `// comments` or `/* comments */`.
+
+If Jinja/Django template comments in inline JS confuse your syntax highlighter, you can do something like this:
+
+```
+/* {# This comment is hidden from the rendered source, and also won't confuse syntax highlighters! #} */
+```
+
+
 ## Jinja and Django template styles
 
 ### Spacing
