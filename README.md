@@ -505,28 +505,44 @@ Rather than this:
 
 ### Jinja2 `set` and `with`
 
+You should usually prefer `{% with %}`, because it avoids bugs caused by scope pollution.
+
+It's okay to use `{% set %}` _near the top of a file_ to create global shortcuts, such as this common case:
+
+```
+{% set content = pages.current.content %}
+```
+
 `{% set %}` and `{% with %}` assignments should have a space before and after the equals, just as one would in the generally-accepted Python style:
 
 ```
-{% set articles = get_news_articles() %}
+{% with articles = get_news_articles() %}
+  ...
+{% endwith %}
 ```
 
 As well as being consistent with Python assignments, it means that constructs like this don't look weird:
 
 ```
-{% set value1, value = get_some_tuple() %}
+{% with value1, value = get_some_tuple() %}
+  ...
+{% endwith %}
 ```
 
 But as with generally accepted Python practice, keyword arguments passed to a function should not:
 
 ```
-{% set articles = get_news_articles(count=5) %}
+{% with articles = get_news_articles(count=5) %}
+  ...
+{% endwith %}
 ```
 
 Function parameters should have a space after each comma, but never before:
 
 ```
-{% set articles = get_news_articles(featured=True, count=5) %}
+{% with articles = get_news_articles(featured=True, count=5) %}
+  ...
+{% endwith %}
 ```
 
 ### Jinja2 macros
