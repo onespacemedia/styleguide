@@ -794,6 +794,20 @@ title = models.CharField(
 )
 ```
 
+However, it is rare to `grep` across sentence boundaries. So if you need to avoid very large line lengths, this is fine:
+
+```python
+title = models.CharField(
+    max_length=100,
+    help_text=(
+      'This is a multi-sentence help text that we are breaking across multiple lines. '
+      'It is unlikely that someone will be searching for, in this case, "multiple lines. It is". '
+      'So this does not harm greppability in practice.'
+    )
+)
+```
+
+
 All models must define a `__str__` method in Python 3 projects, or `__unicode__` for Python 2.
 
 All models should define an `ordering` attribute in their `Meta` class. Postgresql, our preferred database, will return rows in an order that is ["unspecified"](https://www.postgresql.org/docs/9.1/static/queries-order.html) if you do not. Don't rely on primary key ordering to give date-added-based ordering; this is not guaranteed. Implement a "date added" field and have explicit ordering on that column.
