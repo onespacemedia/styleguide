@@ -406,7 +406,7 @@ Use the short form for attributes like `checked` on `<input>` and `selected` on 
 
 ## Comments
 
-It is rare that it is useful for comments to be in the rendered HTML; you should usually use template-syntax `{# comments #}`, rather than `<!-- comments -->`. Similarly, for inline JavaScript, use template syntax instead of JavaScript `// comments` or `/* comments */`.
+It is rarely useful for comments to be in the rendered HTML; you should usually use template-syntax `{# comments #}`, rather than `<!-- comments -->`. Similarly, for inline JavaScript, use template syntax instead of JavaScript `// comments` or `/* comments */`.
 
 If Jinja/Django template comments in inline JS confuse your syntax highlighter, you can do something like this:
 
@@ -878,7 +878,7 @@ It's fine to squash commits if, for example, you made one commit and then a few 
 
 There is almost never a good reason for force-pushing (with the `-f` option on command-line `git`).
 
-Generally, you should avoid `--no-verify` to bypass pre-commit and pre-push hooks. Perhaps every developer knows the moment their one-line change that they were sure could not possibly break the build did, in fact, break the build.
+You should normally avoid `--no-verify` to bypass pre-commit and pre-push hooks. Perhaps every developer knows the moment their one-line change that they were sure could not possibly break the build did, in fact, break the build.
 
 # TODO:
 
