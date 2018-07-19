@@ -853,9 +853,11 @@ Order model attributes thusly:
 5. Overrides of standard model methods (e.g. `save()`), in alphabetical order
 6. All other model methods, in alphabetical order
 
-### Model, field, and app naming
+## Admin usability
 
-Always ensure that the plural form of a model name makes sense. Django's default behaviour will pluralise 'Category' as 'Categorys', for example. Use `verbose_name_plural` to correct this:
+### App and model naming
+
+Always ensure that the plural form of a model name makes sense. By default, Django's admin will pluralise 'Category' as 'Categorys', for example. Use `verbose_name_plural` to correct this:
 
 ```python
 
@@ -872,6 +874,24 @@ class Category(models.Model):
 Where appropriate, supply an appropriate `verbose_name` to ensure that capitalisation is correct for both model names and field names, including appropriate capitalisation for brand names. A model called `Faq` should have a `verbose_name` of 'FAQ'. A 'linkedin_url' field should have a `verbose_name` of 'LinkedIn URL', to avoid the default admin rendering of 'Linkedin url'.
 
 Similarly, where required, ensure that app names have an appropriate `AppConfig` to ensure that app names render grammatically in the admin.
+
+### Help text
+
+Always supply a `help_text` for a field if you think it will be useful. Don't supply a `help_text` if the field name is entirely self-explanatory.
+
+Help text must always be concise, grammatically-correct full sentences with punctuation. Avoid fluffy wording, poor spelling & grammar, and sentence fragments.
+
+```python
+label = models.CharField(
+    max_length=100,
+    # Good example of a help_text.
+    help_text="This is never shown on the front end of the site; it's to help you identify this component in the admin.",
+    # Don't use sentence fragments like this:
+    # help_text="Identifies this component in the admin.",
+    # Or this, which has fluffy wording and adds no more information than the field name itself:
+    # help_text="Please enter a label for this component"
+)
+```
 
 ## Django views
 
