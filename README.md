@@ -902,7 +902,6 @@ You should normally avoid `--no-verify` to bypass pre-commit and pre-push hooks.
 * [ ] How to do overflow on body with iOS
 * [ ] Reusability - Naming
 * [ ] Definition Properties
-* [ ] Vertical Rythm
 
 ## HTML
 * [ ] Sections don't all have to be a unique class
