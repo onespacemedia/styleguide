@@ -363,6 +363,18 @@ Generally, you don't need to add vendor prefixes to property names and values; [
 
 It is occasionally necessary to use vendor prefixes to work around weird cross-browser bugs, and in the vanishingly small number of cases that Autoprefixer does not work. In both these cases, you should add a comment to explain why you are using vendor prefixes.
 
+## Using `z-index`
+
+Do not start `z-index` wars, and don't escalate them if you see them in existing projects.
+
+It's tempting to add an extremely high `z-index` for things that you think absolutely must be on top of all other elements of a site. This often manifests itself as `z-index: 99999`. And then someone notices something that needs to be on top of _that_, and adds an extra digit to make it `z-index: 999999`. Then later, on a retainer task a few months down the line, someone adds an extra digit to _that_...
+
+Generally, if you find yourself using more than low-single-digit z-indices on anything other than a global component like a sticky header, you are in a `z-index` war. If you are using numbers greater than 100, you are definitely in a `z-index` war.
+
+If you can, use DOM ordering and `position: relative` with no z-index if something has to sit above another thing within a component; you will be fine if you place the component later in the DOM at the same or higher level.
+
+If you can't, use the lowest possible `z-index` you can. Within the same component, 1 is usually sufficient.
+
 # HTML guidelines
 
 In these examples, class names are omitted for readability.
