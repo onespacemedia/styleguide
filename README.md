@@ -170,9 +170,21 @@ An extremely simple example follows. Here is our HTML structure:
 
 ## Selectors
 
-Do not have duplicate selectors. You should only need to look in one block to see all the properties and states of any given component.
+Do not have duplicate selectors. You should only need to look in one block to see all the properties and states of any given component. It is okay for a single block to have more than one selector, even when that selector has its own dedicated block elsewhere.
 
-If your block has more than one selector, related selectors should be on the same line, and unrelated selectors should be on a new line.
+If your block has more than one selector, you should place each selector on a new line:
+
+```css
+.frm-Form_Input,
+.frm-Form_Textarea {
+  @include Font_14-20;
+
+  width: 100%;
+
+  border: 1px solid var(--Color_Border);
+  border-radius: 2px;
+}
+```
 
 ### Specificity
 
