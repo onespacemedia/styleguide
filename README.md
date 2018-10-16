@@ -819,7 +819,6 @@ title = models.CharField(
 )
 ```
 
-
 All models must define a `__str__` method in Python 3 projects, or `__unicode__` for Python 2.
 
 All models should define an `ordering` attribute in their `Meta` class. Postgresql, our preferred database, will return rows in an order that is ["unspecified"](https://www.postgresql.org/docs/9.1/static/queries-order.html) if you do not. Don't rely on primary key ordering to give date-added-based ordering; this is not guaranteed. Implement a "date added" field and have explicit ordering on that column.
@@ -879,7 +878,7 @@ Similarly, where required, ensure that app names have an appropriate `AppConfig`
 
 Always supply a `help_text` for a field if you think it will be useful. Don't supply a `help_text` if the field name is entirely self-explanatory.
 
-Help text must always be concise, grammatically-correct full sentences with punctuation. Avoid fluffy wording, poor spelling & grammar, and sentence fragments.
+Help text should be concise, grammatically-correct full sentences with punctuation. Avoid fluffy wording, poor spelling & grammar and sentence fragments.
 
 ```python
 label = models.CharField(
@@ -891,6 +890,39 @@ label = models.CharField(
     # Or this, which has fluffy wording and adds no more information than the field name itself:
     # help_text="Please enter a label for this component"
 )
+```
+
+### Capitalisation
+
+Use sentence case for capitalisation of app names, field names, fieldsets, and help texts.
+
+Avoid Title Case.
+
+A model's `verbose_name` should usually be in lower case.
+
+```python
+class VideoCategory(models.Model):
+    title = models.CharField(
+        max_length=100,
+    )
+
+    class Meta:
+        verbose_name = 'category'
+        verbose_name_plural = 'categories'
+```
+
+The Django admin will automatically capitalise the first letter of the `verbose_name` where appropriate. Providing a `verbose_name` of "Category" in this example would cause the name to be capitalised when its name is used mid-sentence, which is incorrect as 'Category' is not a proper noun.
+
+In the case below, capitalising the 'T' in 'Twitter' is appropriate as it is a proper noun:
+
+```python
+class TwitterAccount(models.Model):
+    username = models.CharField(
+        max_length=100,
+    )
+
+    class Meta:
+        verbose_name = 'Twitter account'
 ```
 
 ## Django views
@@ -943,6 +975,4 @@ You should normally avoid `--no-verify` to bypass pre-commit and pre-push hooks.
 ## Etc
 * [ ] Browser testing
 * [ ] Responsive development
-* [ ] CMS / Admin
-* [ ] User considerations
 * [ ] SEO
