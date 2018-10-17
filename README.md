@@ -74,7 +74,7 @@ class ThingyListView(ListView):
 
 It would be tempting to shorten `context` and `queryset` to `ctx` and `qs`. This would make your code harder to reason about.
 
-Variable names should be in accord with the most common community-accepted standard for whatever language you are using. For example, we use function_names_with_underscores in Python, because this is what the Python community has largely agreed to use. We use camelCase in JavaScript, because this is what the language's standard library and the browser DOM.
+Variable names should be in accord with the most common community-accepted standard for whatever language you are using. For example, we use function_names_with_underscores in Python, because this is what the Python community has largely agreed to use. We use camelCase in JavaScript, because this is what the language's standard library and the browser DOM use.
 
 # CSS guidelines
 
