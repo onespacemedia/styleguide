@@ -10,12 +10,13 @@ As the projects we work on become larger in scale and longer-running, it is very
 
 # Editing this style guide
 
-This is a [docsify](https://docsify.js.org/#/quickstart) document. To start:
+For optimal results, edit this document with help from [docsify](https://docsify.js.org/#/quickstart). To start:
+
 - Run `npm i docsify-cli -g`
 - Clone the `styleguide` repository into your Workspace folder
 - Run `docsify init ./styleguide`, then `docsify serve styleguide`
 
-A web server will be spawned on port 3000. As you edit the README.md it will automatically refresh on the front-end.
+A web server will be spawned on port 3000. As you edit this README.md it will automatically refresh on the front-end.
 
 # Guidelines for any language
 
@@ -48,9 +49,9 @@ for item in some_list:
     counter = counter + 1
 ```
 
-The purpose of comments is not to describe what code does. They are to help other developers understand your code. This is an important distinction.
+The purpose of comments is not to describe what code does. They are to help other developers understand your code.
 
-Anything particularly clever should have be commented (though you may want to see if you can write it in a less clever way). "Magic" numbers and behaviour should have a comment. Anything done to work around strange bugs should be commented. Anything which would cause another developer to say "why did they do this instead of X" (for values of X being some way that would have been you would have tried or did try) should be commented.
+Anything particularly clever should have be commented (though you may want to see if you can write it in a less clever way). "Magic" numbers and behaviour should have a comment. Anything done to work around strange bugs should be commented. Anything which would cause another developer to say "why did they do this instead of X" (for values of X being some way that you would have tried or did try) should be commented.
 
 If you know your code is going to be tricky, the [rubber duck effect](https://blog.codinghorror.com/rubber-duck-problem-solving/) suggests that you should write your comments *first* - the act of describing a problem often makes it easier to solve!
 
@@ -71,9 +72,9 @@ class ThingyListView(ListView):
         return context
 ```
 
-It would be tempting to shorten `context` and `queryset` to `ctx` and `qs`. This would make your code harder to reason about, because someone has to remember what you meant by `ctx` and `qs` later on.
+It would be tempting to shorten `context` and `queryset` to `ctx` and `qs`. This would make your code harder to reason about.
 
-Variable names should be in accord with the most common community-accepted standard for whatever language you are using. For example, we use function_names_with_underscores in Python, because this is what the Python community has largely agreed to use. We use camelCase in Javascript, because this is what the language's standard library and the browser DOM uses.
+Variable names should be in accord with the most common community-accepted standard for whatever language you are using. For example, we use function_names_with_underscores in Python, because this is what the Python community has largely agreed to use. We use camelCase in JavaScript, because this is what the language's standard library and the browser DOM.
 
 # CSS guidelines
 
@@ -95,16 +96,16 @@ Most of these rules are enforced by [Stylelint](https://stylelint.io/), both in 
 
 ## Class naming conventions
 
-We largely follow the [Enduring CSS](http://ecss.io/) convention, which is very similar in philosophy (differing mainly in syntactical details) to the [Block, Element, Modifier](http://getbem.com/naming/) convention. Specifically, *namespace, block, element, modifier*. Class names will take one of three forms.
+We largely follow the [Enduring CSS](http://ecss.io/) convention, which is very similar in philosophy (differing mainly in syntactical details) to the [Block, Element, Modifier](http://getbem.com/naming/) convention. Class names will take one of three forms.
 
 1. `namespace-Block`
 2. `namespace-Block-modifier`
 2. `namespace-Block_Element`
 3. `namespace-Block_Element-modifier`
 
-Here, `namespace` is a two-to-four letter namespace. This could be a distinct set of types of different components, or it could be For example, for things related to the header, this can be namespaced under `hd-`. Different kinds of 'cards' would be namespaced `crd-`. Different kinds of modular sections would be `sec-`.
+Here, `namespace` is a two-to-four letter namespace. This could be a distinct set of types of different components, or it could be For example, for things related to a site's header, this might be namespaced under `hd-`. Different kinds of 'cards' would be namespaced `crd-`. Different kinds of modular sections would be `sec-`.
 
-A `block` is a distinctive component with standalone meaning. Its first letter should always be capitalised. If you are struggling to find a name for it that doesn't fit in a single word, use `CondensedTitleCase` (though you're probably overthinking it).
+A `block` is a distinctive component with standalone meaning. Its first letter should always be capitalised. If you are struggling to find a name for it that doesn't fit in a single word, use `CondensedTitleCase`.
 
 An `element` is something which only ever exists within the context of a `block`.
 
@@ -270,7 +271,7 @@ Instead of this:
 
 ### !important
 
-Do your best to avoid `!important`. There are rare exceptions, such as overriding other `!important` declarations added by third-party code, or inline styles added by the same, but they are rare.
+Avoid `!important`. There are rare exceptions, such as overriding other `!important` declarations added by third-party code, or inline styles added by the same.
 
 ### IDs as selectors
 
@@ -278,10 +279,7 @@ Don't target IDs in the form `#selector`, as it has [infinitely more specificity
 
 If you are forced to target an ID (such as with elements injected by third-party code), target `*[id="foo"]` instead.
 
-
 ## Grouping properties
-
-You should take a second to understand the [grouping configuration](https://github.com/onespacemedia/project-template/blob/develop/%7B%7Bcookiecutter.repo_name%7D%7D/package.json#L119) we use.
 
 Properties are grouped for readability, with an empty line separating adjacent groups, in this order:
 
@@ -304,6 +302,8 @@ Properties are grouped for readability, with an empty line separating adjacent g
     animation and transition properties;
   }
 ```
+
+For further details, see the [grouping configuration](https://github.com/onespacemedia/project-template/blob/develop/%7B%7Bcookiecutter.repo_name%7D%7D/package.json#L208) in the project template.
 
 ## Commenting
 
@@ -359,7 +359,7 @@ You can and should use these units for spacing and sizing where appropriate. Alw
 
 Avoid `em`; there are only very rare cases where this unit is necessary.
 
-You never need to use `rem` - our build system translates `rem` into `px` units (via [postcss-pxtorem](https://github.com/cuth/postcss-pxtorem)), so just use `px` instead.
+You never need to use `rem` - our build system translates `px` into `rem` units (via [postcss-pxtorem](https://github.com/cuth/postcss-pxtorem)), so just use `px` instead.
 
 Otherwise, you should feel free to use whatever other unit is necessary to get a pleasing result.
 
@@ -733,7 +733,7 @@ ANIMAL_CHOICES = [
     ]
 ```
 
-Multi-line array, dictionary, and tuples should have a dangling comma on the last item. Multi-line function calls may optionally have them too, though this isn't always possible (it's a syntax error if your last argument is of the form `**kwargs`).
+Multi-line array, dictionary, and tuples should have a dangling comma on the last item. Multi-line function calls may optionally have them too, though this isn't always possible (it's a syntax error in Python 2.x if your last argument is of the form `**kwargs`).
 
 For function calls (including class instantiation), if your declaration goes across more than one line, then the first argument should be on a new line:
 
@@ -793,7 +793,7 @@ class StyleGuide(models.Model):
     )
 ```
 
-There should be a new line before the first argument to a field's constructor, and each argument goes on a new line. This makes diffs easier to read when arguments are added or deleted.
+There should be a new line before the first argument to a field's constructor, and each argument should be on its own line. This makes diffs easier to read when arguments are added or deleted.
 
 There should be a dangling comma after the last argument. Again, this makes diffs easier to read (because adding an argument to the end does not affect neighbouring lines).
 
@@ -833,7 +833,7 @@ title = models.CharField(
 
 All models must define a `__str__` method in Python 3 projects, or `__unicode__` for Python 2.
 
-All models should define an `ordering` attribute in their `Meta` class. Postgresql, our preferred database, will return rows in an order that is ["unspecified"](https://www.postgresql.org/docs/9.1/static/queries-order.html) if you do not. Don't rely on primary key ordering to give date-added-based ordering; this is not guaranteed. Implement a "date added" field and have explicit ordering on that column.
+All models should define an `ordering` attribute in their `Meta` class. Postgresql, our preferred database, will return rows in an ["unspecified"](https://www.postgresql.org/docs/9.1/static/queries-order.html) order if you do not. Don't rely on primary key ordering to give date-added-based ordering; this is not guaranteed. Implement a "date added" field and have explicit ordering on that column.
 
 ### About various field types
 
@@ -890,7 +890,7 @@ Similarly, where required, ensure that app names have an appropriate `AppConfig`
 
 Always supply a `help_text` for a field if you think it will be useful. Don't supply a `help_text` if the field name is entirely self-explanatory.
 
-Help text should be concise, grammatically-correct full sentences with punctuation. Avoid fluffy wording, poor spelling & grammar and sentence fragments.
+Help text should be concise, grammatically-correct full sentences with punctuation. Avoid fluffy wording, poor spelling & grammar, and sentence fragments.
 
 ```python
 label = models.CharField(
@@ -899,7 +899,7 @@ label = models.CharField(
     help_text="This is never shown on the front end of the site; it's to help you identify this component in the admin.",
     # Don't use sentence fragments like this:
     # help_text="Identifies this component in the admin.",
-    # Or this, which has fluffy wording and adds no more information than the field name itself:
+    # Or this, which has fluffy wording and adds no more information than the field name:
     # help_text="Please enter a label for this component"
 )
 ```
@@ -969,22 +969,3 @@ It's fine to squash commits if, for example, you made one commit and then a few 
 There is almost never a good reason for force-pushing (with the `-f` option on command-line `git`).
 
 You should normally avoid `--no-verify` to bypass pre-commit and pre-push hooks. Perhaps every developer knows the moment their one-line change that they were sure could not possibly break the build did, in fact, break the build.
-
-# TODO:
-
-## CSS
-* [ ] Margin vs Padding on sections
-* [ ] How to do cards height (iOS issues with height: 100%)
-* [ ] How to do overflow on body with iOS
-* [ ] Reusability - Naming
-* [ ] Definition Properties
-
-## HTML
-* [ ] Sections don't all have to be a unique class
-* [ ] Explain the `_Header` `_Body` style way of doing things and the benefits
-* [ ] Explain the standard classes `_Title`, `_Text`, etc.
-
-## Etc
-* [ ] Browser testing
-* [ ] Responsive development
-* [ ] SEO
